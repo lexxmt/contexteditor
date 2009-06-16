@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>TidyPas Data Types</title>
+<meta name="generator" content="pas2html 0.9.2">
+</head>
+<body bgcolor="#FFFFDD">
+
+<center><h3>TidyPas Data Types</h3></center>
+<pre>
+<b><font color="#0000C0">const</font></b>
+  yes = true;
+  no = false;
+  ENOMEM = 12;
+
+<b><font color="#0000C0">type</font></b>
+  DWORD   = cardinal; 
+  uint    =  DWORD;
+  ulong   =  DWORD;
+  pUint   =  ^uint;
+  ctmbstr =  pChar;
+  tmbstr  =  pChar;
+  Bool    =  boolean;
+  CFILE   =  LongInt;
+  pCFILE  =  ^CFILE;
+  void    =  pointer;
+
+  opaque = pointer; <font color="#606080">{ a pointer to something you probably don't want to see }</font>
+
+  TidyOption = opaque;
+  TidyIterator = opaque;
+  pTidyIterator = ^TidyIterator;
+  TidyDoc=opaque;
+
+
+  TidyReportLevel = ( TidyInfo, TidyWarning, TidyConfig, TidyAccess, 
+                      TidyError, TidyBadDocument, TidyFatal );
+
+  TidyReportFilter = function ( tdoc:TidyDoc; lvl:TidyReportLevel; 
+                                  line:uint; col:uint; mssg:ctmbstr ):Bool; cdecl;
+
+  pTidyReportFilter = ^TidyReportFilter;
+
+  
+  tTidyReportEvent = procedure( sender:tObject;  level:TidyReportLevel;  line,col:cardinal;
+                                     msg:ansistring; var bWriteOut:Boolean  ) of object;
+
+
+  TidyBuffer = <font color="#0000C0">record</font>
+    bp: pChar;
+    size : uint;
+    allocated : uint;
+    next : uint;
+  <b><font color="#0000C0">end</font></b>;
+
+  pTidyBuffer = ^TidyBuffer;
+
+
+
+  tDict = <font color="#0000C0">record</font>
+    id: TidyTagId;
+    name: tmbstr;
+    versions: uint;
+    model:uint;
+    parser:opaque;
+    chkattrs:opaque;
+    next:pDict;
+  <b><font color="#0000C0">end</font></b>;
+
+  pDict=^tDict;
+  
+<a name="tidy-node-type"></a>
+
+  tTidyAttr = <font color="#0000C0">record</font>
+    next:   pTidyAttr;
+    AttDef: pDict;
+    asp:    pTidyNode;
+    php:    pTidyNode;
+    delim:  LongInt;
+    name:   tmbstr;
+    value:  tmbstr;
+  <b><font color="#0000C0">end</font></b>;
+
+  pTidyAttr = ^tTidyAttr;
+
+
+
+  tTidyNode =  <font color="#0000C0">record</font>
+    parent: pTidyNode;    <font color="#606080">{ tree structure }</font>
+    prev:pTidyNode;       <font color="#606080">{ previous sibling }</font>
+    next:pTidyNode;       <font color="#606080">{ next sibling }</font>
+    content:pTidyNode;    <font color="#606080">{ first child }</font>
+    last:pTidyNode;       <font color="#606080">{ last node in the document }</font>
+    attributes:pTidyAttr; <font color="#606080">{ linked list of attributes }</font>
+    was:pDict;            <font color="#606080">{ old tag when it was changed }</font>
+    tag:pDict;            <font color="#606080">{ tag's dictionary definition }</font>
+    element:tmbstr;       <font color="#606080">{ name (null for text nodes) }</font>
+    start: uint;          <font color="#606080">{ start of span onto text array }</font>
+    _end: uint;           <font color="#606080">{ end of span onto text array }</font>
+    _type: uint;          <font color="#606080">{ TextNode, StartTag, EndTag etc. }</font>
+    line: uint;           <font color="#606080">{ current line of document }</font>
+    column: uint;         <font color="#606080">{ current column of document }</font>
+    closed:Bool;          <font color="#606080">{ true if closed by explicit end tag }</font>
+    implicit:Bool;        <font color="#606080">{ true if inferred }</font>
+    linebreak:Bool;       <font color="#606080">{ true if followed by a line break }</font>
+  <b><font color="#0000C0">end</font></b>;
+
+  pTidyNode = ^tTidyNode;
+  
+</pre>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
+

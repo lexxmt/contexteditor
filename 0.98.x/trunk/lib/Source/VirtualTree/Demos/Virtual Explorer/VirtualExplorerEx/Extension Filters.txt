@@ -1,0 +1,3 @@
+*.txt|*.doc
+*.exe|*.bat|*.dll
+*.pdf

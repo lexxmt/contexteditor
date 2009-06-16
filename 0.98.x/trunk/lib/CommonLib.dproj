@@ -1,0 +1,158 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{04f2589b-4e75-425f-b316-6cd24beea8be}</ProjectGuid>
+    <MainSource>CommonLib.dpk</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\5.0\Bpl\CommonLib.bpl</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_AssertionsAtRuntime>False</DCC_AssertionsAtRuntime>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_WriteableConstants>True</DCC_WriteableConstants>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Hints>False</DCC_Hints>
+    <DCC_Warnings>False</DCC_Warnings>
+    <DCC_DcuOutput>Binaries\</DCC_DcuOutput>
+    <DCC_ObjOutput>Binaries\</DCC_ObjOutput>
+    <DCC_HppOutput>Binaries\</DCC_HppOutput>
+    <DCC_UnitSearchPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_UnitSearchPath>
+    <DCC_ResourcePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_ResourcePath>
+    <DCC_ObjPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_ObjPath>
+    <DCC_IncludePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_IncludePath>
+    <DCC_Define>RELEASE</DCC_Define>
+    <DCC_UNSAFE_TYPE>True</DCC_UNSAFE_TYPE>
+    <DCC_UNSAFE_CODE>True</DCC_UNSAFE_CODE>
+    <DCC_UNSAFE_CAST>True</DCC_UNSAFE_CAST>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_AssertionsAtRuntime>False</DCC_AssertionsAtRuntime>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_WriteableConstants>True</DCC_WriteableConstants>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Hints>False</DCC_Hints>
+    <DCC_Warnings>False</DCC_Warnings>
+    <DCC_DcuOutput>Binaries\</DCC_DcuOutput>
+    <DCC_ObjOutput>Binaries\</DCC_ObjOutput>
+    <DCC_HppOutput>Binaries\</DCC_HppOutput>
+    <DCC_UnitSearchPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_UnitSearchPath>
+    <DCC_ResourcePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_ResourcePath>
+    <DCC_ObjPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_ObjPath>
+    <DCC_IncludePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\tbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\</DCC_IncludePath>
+    <DCC_UNSAFE_TYPE>True</DCC_UNSAFE_TYPE>
+    <DCC_UNSAFE_CODE>True</DCC_UNSAFE_CODE>
+    <DCC_UNSAFE_CAST>True</DCC_UNSAFE_CAST>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>Package</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject xmlns=""> <Delphi.Personality>   <Parameters>
+      <Parameters Name="UseLauncher">False</Parameters>
+      <Parameters Name="LoadAllSymbols">True</Parameters>
+      <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+    </Parameters>
+    <Package_Options>
+      <Package_Options Name="ImplicitBuild">False</Package_Options>
+      <Package_Options Name="DesigntimeOnly">False</Package_Options>
+      <Package_Options Name="RuntimeOnly">False</Package_Options>
+    </Package_Options>
+    <VersionInfo>
+      <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+      <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+      <VersionInfo Name="MajorVer">1</VersionInfo>
+      <VersionInfo Name="MinorVer">0</VersionInfo>
+      <VersionInfo Name="Release">0</VersionInfo>
+      <VersionInfo Name="Build">0</VersionInfo>
+      <VersionInfo Name="Debug">False</VersionInfo>
+      <VersionInfo Name="PreRelease">False</VersionInfo>
+      <VersionInfo Name="Special">False</VersionInfo>
+      <VersionInfo Name="Private">False</VersionInfo>
+      <VersionInfo Name="DLL">False</VersionInfo>
+      <VersionInfo Name="Locale">1050</VersionInfo>
+      <VersionInfo Name="CodePage">1250</VersionInfo>
+    </VersionInfo>
+    <VersionInfoKeys>
+      <VersionInfoKeys Name="CompanyName"></VersionInfoKeys>
+      <VersionInfoKeys Name="FileDescription"></VersionInfoKeys>
+      <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+      <VersionInfoKeys Name="InternalName"></VersionInfoKeys>
+      <VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys>
+      <VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys>
+      <VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys>
+      <VersionInfoKeys Name="ProductName"></VersionInfoKeys>
+      <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+      <VersionInfoKeys Name="Comments"></VersionInfoKeys>
+    </VersionInfoKeys>
+    <Source>
+      <Source Name="MainSource">CommonLib.dpk</Source>
+    </Source>
+  </Delphi.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <ItemGroup />
+  <ItemGroup>
+    <DelphiCompile Include="CommonLib.dpk">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="bdertl.dcp" />
+    <DCCReference Include="CommonLib_TLB.pas" />
+    <DCCReference Include="dbrtl.dcp" />
+    <DCCReference Include="dclstd.dcp" />
+    <DCCReference Include="designide.dcp" />
+    <DCCReference Include="rtl.dcp" />
+    <DCCReference Include="Source\ColorPicker.dcr" />
+    <DCCReference Include="Source\ColorPicker.dcr" />
+    <DCCReference Include="Source\ColorPicker.pas" />
+    <DCCReference Include="Source\ComCtrls95\CC95_Register.pas" />
+    <DCCReference Include="Source\ConTEXTSynEdit.pas" />
+    <DCCReference Include="Source\DirLabel.dcr" />
+    <DCCReference Include="Source\DirLabel.dcr" />
+    <DCCReference Include="Source\DirLabel.pas" />
+    <DCCReference Include="Source\FontCtls.dcr" />
+    <DCCReference Include="Source\FontCtls.dcr" />
+    <DCCReference Include="Source\FontCtls.pas" />
+    <DCCReference Include="Source\HexEdits.pas" />
+    <DCCReference Include="Source\HistoryList.dcr" />
+    <DCCReference Include="Source\HistoryList.dcr" />
+    <DCCReference Include="Source\HistoryList.pas" />
+    <DCCReference Include="Source\MainInstance.dcr" />
+    <DCCReference Include="Source\MainInstance.dcr" />
+    <DCCReference Include="Source\MainInstance.pas" />
+    <DCCReference Include="Source\MILAssociate.dcr" />
+    <DCCReference Include="Source\MILAssociate.dcr" />
+    <DCCReference Include="Source\MILAssociate.pas" />
+    <DCCReference Include="Source\RsRuler.dcr" />
+    <DCCReference Include="Source\RsRuler.dcr" />
+    <DCCReference Include="Source\RsRuler.pas" />
+    <DCCReference Include="Source\ScrollListBox.pas" />
+    <DCCReference Include="Source\SynEdit\SynEditReg.dcr" />
+    <DCCReference Include="Source\SynEdit\SynEditReg.dcr" />
+    <DCCReference Include="Source\SynEdit\SynEditReg.pas" />
+    <DCCReference Include="Source\SynEdit\SynHighlighterText.pas" />
+    <DCCReference Include="Source\SynEdit\SynUniSyn\SynUniReg.pas" />
+    <DCCReference Include="Source\tb2k\TB2Reg.dcr" />
+    <DCCReference Include="Source\tb2k\TB2Reg.dcr" />
+    <DCCReference Include="Source\tb2k\TB2Reg.pas" />
+    <DCCReference Include="Source\tbx\TBXReg.dcr" />
+    <DCCReference Include="Source\tbx\TBXReg.dcr" />
+    <DCCReference Include="Source\tbx\TBXReg.pas" />
+    <DCCReference Include="Source\Tidy\TidyLib.pas" />
+    <DCCReference Include="Source\TrayIcon.pas" />
+    <DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.dcr" />
+    <DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.dcr" />
+    <DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.pas" />
+    <DCCReference Include="Source\XPdesign\XPdesign.pas" />
+    <DCCReference Include="vcl.dcp" />
+    <DCCReference Include="vclactnband.dcp" />
+    <DCCReference Include="vcldb.dcp" />
+    <DCCReference Include="vcljpg.dcp" />
+    <DCCReference Include="vclx.dcp" />
+    <DCCReference Include="xmlrtl.dcp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+</Project>

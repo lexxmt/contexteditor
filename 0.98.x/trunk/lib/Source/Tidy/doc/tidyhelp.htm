@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>tTidy Properties and Methods</title></head>
+<body bgcolor="#D0D0A0">
+<div align="center"><h2><font color="#606000">tTidy Properties and Methods</font></h2></div>
+
+<!-- BEGIN NAVIGATION TABLE -->
+<table align="center" border="0" width="90%" cellpadding="8" bgcolor="#808000" summary="Header Index">
+  <tr>
+    <td width="20%" align="center" bgcolor="#D0F0F0">
+      <a href="#MarkupHeader"      >Markup Properties       </a>
+    </td>
+    <td width="20%" align="center" bgcolor="#D0F0F0">
+      <a href="#PrettyPrintHeader" >Pretty Print Properties </a>
+    </td>
+    <td width="20%" align="center" bgcolor="#D0F0F0">
+      <a href="#DiagnosticsHeader" >Diagnostics Properties  </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="20%" align="center" bgcolor="#D0F0F0">
+      <a href="#EncodingHeader"    >Encoding Properies      </a>
+    </td>
+    <td width="20%" align="center" bgcolor="#D0F0F0"> 
+      <a href="#ReadOnlyHeader"    >Read-Only Properties    </a>
+    </td>
+    <td width="20%" align="center" bgcolor="#D0F0F0"> 
+      <a href="#CallbackHeader"    >Event Callbacks         </a>
+    </td>
+  </tr>
+</table>
+<br>
+<div align="center">Note: For specialized data types / structures used by TidyPas, see <a href="./tidytype.htm">tidytype.htm</a></div>
+<br><br><br>
+
+<!-- BEGIN METHODS MAIN TABLE -->
+<TABLE  border="0" cellpadding="4" align="center" summary="tTidy Properties Header Section">
+  <tr valign="bottom" align="center">
+    <td colspan="5" bgcolor="#D0F0F0"><a name="MethodHeader">Methods</a></td>
+  </tr>
+<TR><TD></TD></TR>
+<TR>
+
+<TD WIDTH="4">&nbsp;</TD>
+<TD VALIGN="middle" bgcolor="#F0F0D0">
+      <table width="100%" summary="tTidy Methods Header Section" border="1" cellpadding="8" cellspacing="0">
+        <tr><td>
+        &nbsp; Constructor <a href="./tidymeth.htm#constructor-create">Create </a><br>&nbsp;<br>
+        &nbsp; Destructor  <a href="./tidymeth.htm#destructor-destroy">Destroy</a><br>&nbsp;<br>
+        &nbsp; Function    <a href="./tidymeth.htm#load-config-file">LoadConfigFile</a><br>&nbsp;<br>
+        &nbsp; Function    <a href="./tidymeth.htm#save-config-file">SaveConfigFile</a>
+        </td></tr>
+      </table>
+</TD>
+<TD WIDTH="8">&nbsp;</TD>
+
+<TD VALIGN="middle" bgcolor="#F0F0D0">
+      <table width="100%" summary="tTidy Methods Header Section" border="1" cellpadding="8" cellspacing="0">
+        <tr><td>
+        &nbsp; Procedure   <a href="./tidymeth.htm#parse-file"  >ParseFile  </a><br>&nbsp;<br>
+        &nbsp; Procedure   <a href="./tidymeth.htm#parse-string">ParseString</a><br>&nbsp;<br>
+        &nbsp; Procedure   <a href="./tidymeth.htm#parse-stdin" >ParseStdin </a><br>&nbsp;<br>
+        &nbsp; Procedure   <a href="./tidymeth.htm#procedure-reset">Reset</a>
+        </td></tr>
+      </table>
+</TD>
+
+<TD WIDTH="4">&nbsp;</TD>
+</TR></TABLE>
+<br><br>
+<!-- BEGIN READ-ONLY MAIN TABLE -->
+<a name="ReadOnlyHeader"><br></a>
+<TABLE  border="0" cellpadding="4"  align="center" summary="tTidy Read-Only Properties Header Section">
+    <tr valign="bottom" align="center">
+      <td colspan="5" bgcolor="#D0F0F0">Read-Only Properties</td>
+    </tr>
+<TR><TD></TD></TR -->
+<TR>
+<TD WIDTH="4">&nbsp;</TD>
+<TD VALIGN="top" bgcolor="#F0F0D0">
+  <table width="40%" summary="tTidy Properties Header Section Left Bank" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+
+    <tr> <td><a href="./tidyprop.htm#output-html">HTML  </a></td>  <td>String   </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#output-xhtml">XHTML</a></td>  <td>String   </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#output-xml">XML    </a></td>  <td>String   </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidymeth.htm#handle">Handle     </a></td>  <td>pTidyDoc </td> <td>tidydoc</td> </tr>
+    <tr> <td><a href="./tidymeth.htm#root-node">RootNode</a></td>         <td>pTidyNode</td> <td>nil  </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#doctype-mode">DoctypeMode</a></td>   <td>LongWord </td> <td>0    </td> </tr>
+    </table>
+  </TD>
+<TD WIDTH="4">&nbsp;</TD>
+<TD VALIGN="top" bgcolor="#F0F0D0">
+  <table width="40%" summary="tTidy Properties Header Section Right Bank" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidymeth.htm#error-count">ErrorCount</a></td>     <td>LongWord </td> <td>0    </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#warning-count">WarningCount</a></td> <td>LongWord </td> <td>0    </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#access-warning-count">AccessWarningCount</a></td> <td>LongWord </td> <td>0    </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#config-error-count">ConfigErrorCount</a></td> <td>LongWord </td> <td>0    </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#tidy-status">Status</a></td> <td>LongWord </td> <td>0    </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#release-date">ReleaseDate</a></td>  <td>String   </td> <td>D M Y</td> </tr>
+    </table>
+  </TD>
+ </TR></TABLE>
+<br><br> 
+ 
+<!-- BEGIN CALLBACKS MAIN TABLE -->
+<a name="CallbackHeader"></a><br>
+<TABLE  border="0" cellpadding="4" align="center" summary="tTidy Properties Header Section">
+  <tr valign="bottom" align="center">
+    <td colspan="5" bgcolor="#D0F0F0">Callback Properties</td>
+  </tr>
+<TR><TD></TD></TR>
+<TR>
+<TD WIDTH="4">&nbsp;</TD>
+<TD VALIGN="top" bgcolor="#F0F0D0">
+      <table width="100%" summary="tTidy Properties Header Section" border="1" cellpadding="3" cellspacing="0">
+        <tr> <td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+        <tr> <td><a href="./tidymeth.htm#report-callback">ReportCallback</a></td> <td>TidyReportFilter</td> <td>nil</td> </tr>
+        <tr> <td><a href="./tidymeth.htm#on-report">OnReport</a></td>          <td>tTidyReportEvent</td> <td>nil</td> </tr>    
+      </table>
+</TD></TR></TABLE>
+<br><br>
+
+<!-- ***** BEGIN MARKUP PROPERTIES TABLE ***** -->
+<a name="MarkupHeader"></a><br>
+<TABLE  border="0" cellpadding="4" align="center" summary="tTidy Properties Header Section">
+  <tr valign="bottom" align="center">
+    <td colspan="5" bgcolor="#D0F0F0">Markup Properties</td>
+  </tr>
+<TR><TD></TD></TR>
+<TR>
+<TD WIDTH="4">&nbsp;</TD>
+<TD VALIGN="top" bgcolor="#F0F0D0">
+  <!-- BEGIN MARKUP Properties LEFT BANK-->
+  <table width="40%" summary="tTidy Properties Header Section Left Bank" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidyprop.htm#alt-text">AltText</a></td>                          <td>String </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#doctype">Doctype</a></td>                           <td>String </td> <td>auto </td>  </tr>
+    <tr> <td><a href="./tidyprop.htm#new-blocklevel-tags">BlockTags</a></td>             <td>String </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#new-empty-tags">EmptyTags</a></td>                  <td>String </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#new-inline-tags">InlineTags</a></td>                <td>String </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#new-pre-tags">PreTags</a></td>                      <td>String </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#break-before-br">BreakBeforeBR</a></td>             <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#drop-empty-paras">DropEmptyParas</a></td>           <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#drop-font-tags">DropFontTags</a></td>               <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#drop-proprietary-attributes">DropPropAttrs</a></td> <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#enclose-block-text">EncloseBlockText</a></td>       <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#enclose-text">EncloseBodyText</a></td>              <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#fix-bad-comments">FixComments</a></td>              <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#fix-uri">FixUri</a></td>                            <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#hide-comments">HideComments</a></td>                <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#hide-endtags">HideEndTags</a></td>                  <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#join-classes">JoinClasses</a></td>                  <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#join-styles">JoinStyles</a></td>                    <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#logical-emphasis">LogicalEmphasis</a></td>          <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#lower-literals">LowerLiterals</a></td>              <td>Boolean</td> <td>True </td> </tr>
+  </table>
+</TD>
+<TD WIDTH="8">&nbsp;</TD>
+<TD BGCOLOR="#F0F0D0" VALIGN="top">
+  <!-- BEGIN MARKUP Properties RIGHT BANK-->
+  <table width="40%" summary="tTidy Properties Header Section" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidyprop.htm#bare">MakeBare</a></td>                        <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#clean">MakeClean</a></td>                      <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#ncr">Ncr</a></td>                              <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#numeric-entities">NumEntities</a></td>         <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#quote-ampersand">QuoteAmpersand</a></td>       <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#quote-marks">QuoteMarks</a></td>               <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#quote-nbsp">QuoteNbsp</a></td>                 <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#repeated-attributes">DuplicateAttrs</a></td>   <td>Enum   </td> <td>Last </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#replace-color">ReplaceColor</a></td>           <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#show-body-only">BodyOnly</a></td>              <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#uppercase-attributes">UpperCaseAttrs</a></td>  <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#uppercase-tags">UpperCaseTags</a></td>         <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#word-2000">Word2000</a></td>                   <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td colspan="3" align="center" bgcolor="#D0F0D0">XML / processor instructions</td></tr>
+    <tr> <td><a href="./tidyprop.htm#add-xml-decl">XmlDecl</a></td>                 <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#assume-xml-procins">XmlPIs</a></td>            <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#add-xml-space">XmlSpace</a></td>               <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#input-xml">XmlTags</a></td>                    <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#escape-cdata">EscapeCdata</a></td>             <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#indent-cdata">IndentCdata</a></td>             <td>Boolean</td> <td>False</td> </tr>
+  </table>
+</TD>
+<TD WIDTH="4">&nbsp;</TD>
+</TR></TABLE>
+<br><br>
+
+<a name="PrettyPrintHeader"></a><br>
+<!-- ********************* BEGIN PRETTY PRINT MAIN TABLE ***************** -->
+<TABLE  border="0" cellpadding="4"  align="center" summary="tTidy Properties Header Section">
+    <tr valign="bottom" align="center">
+      <td colspan="5" bgcolor="#D0F0F0">Pretty Print Properties</td>
+    </tr>
+<TR><TD></TD></TR>
+<TR>
+  <TD WIDTH="4">&nbsp;</TD>
+<TD VALIGN="top" bgcolor="#F0F0D0">
+<!-- BEGIN PRETTY-PRINT LEFT BANK -->
+  <table width="40%" summary="tTidy Properties Header Section Left Bank" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidyprop.htm#indent">IndentContent</a></td>                      <td>Enum   </td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#indent-attributes">IndentAttributes</a></td> <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#indent-spaces">IndentSpaces</a></td>         <td>Integer</td> <td>2    </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#literal-attributes">LiteralAttribs</a></td>  <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#markup">ShowMarkup</a></td>                  <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#tab-size">TabSize</a></td>                   <td>Integer</td> <td>4    </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#wrap">WrapLen</a></td>                       <td>Integer</td> <td>68   </td> </tr>
+  </table>
+</TD>
+<TD WIDTH="8">&nbsp;</TD>
+<TD VALIGN="top" bgcolor="#F0F0D0">
+<!-- BEGIN PRETTY-PRINT RIGHT BANK -->
+  <table width="40%" summary="tTidy Properties Header Section" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidyprop.htm#wrap-asp">WrapAsp</a></td>                         <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#wrap-attributes">WrapAttVals</a></td>              <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#wrap-jste">WrapJste</a></td>                       <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#wrap-php">WrapPhp</a></td>                         <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#wrap-script-literals">WrapScriptlets</a></td>      <td>Boolean</td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#wrap-sections">WrapSection</a></td>                <td>Boolean</td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#fix-backslash">FixBackslash</a></td>               <td>Boolean</td> <td>True </td> </tr>
+  </table>
+</TD>
+  <TD WIDTH="4">&nbsp;</TD>
+</TR></TABLE>
+
+  <br><br>
+
+<!-- BEGIN DIAGNOSTIC/ENCODING MAIN TABLE -->
+<a name="DiagnosticsHeader"></a>
+<a name="EncodingHeader"></a><br>
+<TABLE border="0" cellpadding="4" align="center" summary="tTidy Diagnostic and Encoding Properties Header Section">
+    <tr valign="bottom" align="center">
+      <td colspan="3" bgcolor="#D0F0F0">Diagnostics Properties</td>
+      <TD WIDTH="2">&nbsp;</TD>
+      <td colspan="3" bgcolor="#D0F0F0">Encoding Properties</td>
+    </tr>
+<TR><TD></TD></TR>
+<TR>
+  <TD WIDTH="4">&nbsp;</TD>
+  <TD VALIGN="top" bgcolor="#F0F0D0">
+<!-- *********** BEGIN DIAGNOSTIC Properties LEFT BANK ************* -->
+  <table width="40%" summary="tTidy Diagnostic Properties Header Section" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidymeth.htm#congruent">Congruent</a></td>                          <td>Boolean </td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#error-file">ErrorFile</a></td>                              <td>String  </td> <td>empty</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#force-output">ForceOutput</a></td>                          <td>Boolean </td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#gnu-emacs">Emacs</a></td>                                   <td>Boolean </td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#quiet">Quiet</a></td>                                       <td>Boolean </td> <td>False</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#show-errors">ShowErrors</a></td>                            <td>Integer </td> <td>6    </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#show-warnings">ShowWarnings</a></td>                        <td>Boolean </td> <td>True </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#tidy-mark">Mark</a></td>                                    <td>Boolean </td> <td>True </td> </tr>
+    <tr> <td><a href="./tidymeth.htm#accessibility-check-level">AccessibilityCheckLevel</a></td> <td>LongWord</td> <td>0    </td> </tr>
+  </table>
+</TD>
+<TD WIDTH="3">&nbsp;</TD>
+<TD WIDTH="2">&nbsp;</TD>
+<TD WIDTH="3">&nbsp;</TD>
+<!-- *********** BEGIN ENCODING Properties RIGHT BANK ************* -->
+<TD VALIGN="top" bgcolor="#F0F0D0">
+  <table width="40%" summary="tTidy Encoding Properties Header Section" border="1" cellpadding="3" cellspacing="0">
+    <tr><td bgcolor="#D0F0D0" >Property</td><td bgcolor="#D0F0D0"  width="25%" >Type</td><td bgcolor="#D0F0D0"  width="25%" >Default</td></tr>
+    <tr> <td><a href="./tidyprop.htm#ascii-chars">AsciiChars</a></td>          <td>Boolean </td> <td>True  </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#char-encoding">CharEncoding</a></td>      <td>LongWord</td> <td>ascii </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#input-encoding">InCharEncoding</a></td>   <td>LongWord</td> <td>latin1</td> </tr>
+    <tr> <td><a href="./tidyprop.htm#output-encoding">OutCharEncoding</a></td> <td>LongWord</td> <td>ascii </td> </tr>
+    <tr> <td><a href="./tidyprop.htm#output-bom">OutputBom</a></td>            <td>Enum    </td> <td>auto  </td> </tr>
+  </table>
+</TD>
+<TD WIDTH="4">&nbsp;</TD>
+</TR></TABLE>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head><title>Downloading and installing LibTidy from CVS</title></head>
+<body bgcolor="#F0F0D0">
+<br><br>
+<center><h2>Obtaining and installing libtidy from CVS</h2></center>
+<br><br>
+<h3>Download</h3>
+To obtain the latest sources from CVS, open a console or XTerm window, <br>
+and issue the following commands:
+<br><br>
+<table bgcolor="#FFFFF0" border="1" width="100%" cellpadding="16" summary="CVS commands">
+  <tr><td><pre>
+  cvs -d:pserver:anonymous@cvs.tidy.sourceforge.net:/cvsroot/tidy login
+  # Press RETURN when prompted for password 
+  cvs -z3 -d:pserver:anonymous@cvs.tidy.sourceforge.net:/cvsroot/tidy checkout -R -r TIDYLIB_0_1 . 
+  cvs -d:pserver:anonymous@cvs.tidy.sourceforge.net:/cvsroot/tidy logout 
+  </pre></td></tr>
+</table>
+Note the <i>space</i> and <i>period</i> characters after TIDYLIB_0_1 - they are important.
+<br><br>
+For those without CVS, you can download a ZIP of the TidyLib sources from <a href="http://users.rcn.com/creitzel/tidy.html">Charlie's</a> homepage.
+<br><br><br>
+
+<h3>Build</h3>
+The default Makefile for the library only builds the static archive ( libtidy.la ). <br>
+TidyPas needs a dynamic library ( libtidy.so ) to link against.<br>
+So you will either need to edit the Makefile, or build the library manually <br>
+by issuing the following commands in the <b><tt>/tidy/</tt></b> directory ( from a <b>bash</b> prompt ):<br><br>
+<table bgcolor="#FFFFF0" border="1" width="100%" cellpadding="16" summary="build commands">
+  <tr><td><pre>
+for FN in src/*.c
+do
+  libtool gcc -I ./include/ -g -O -c $FN
+done
+
+libtool gcc -g -O -o libtidy.la *.lo -rpath /usr/local/lib -lm
+  </pre></td></tr>
+</table>
+<br><br><br><br>
+<h3>Install</h3>
+If everything looks okay after the build, install the library
+with this command:
+<table bgcolor="#FFFFF0" border="1" width="100%" cellpadding="16" summary="install commands">
+  <tr><td><pre>
+libtool install -c libtidy.la /usr/local/lib/libtidy.la
+ldconfig
+  </pre></td></tr>
+</table>
+( You will probably need root access for the install. )<br>
+<br><br><br>
+Note that I am using <b><tt>/usr/local/lib/</tt></b> for the build and install commands, <br>
+and the default Makefile will install the library in <b><tt>/usr/lib/</tt></b><br>
+( This is really just a matter of personal preference. )
+<br><br><br>
+</body>
+</html>
+

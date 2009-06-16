@@ -1,0 +1,78 @@
+package CommonLib;
+
+{$R *.res}
+{$R 'Source\DirLabel.dcr'}
+{$R 'Source\SynEdit\SynEditReg.dcr'}
+{$R 'Source\MainInstance.dcr'}
+{$R 'Source\HistoryList.dcr'}
+{$R 'Source\FontCtls.dcr'}
+{$R 'Source\ColorPicker.dcr'}
+{$R 'Source\MILAssociate.dcr'}
+{$R 'Source\tb2k\TB2Reg.dcr'}
+{$R 'Source\tbx\TBXReg.dcr'}
+{$R 'Source\RsRuler.dcr'}
+{$R 'Source\VirtualTree\VirtualShellToolsReg.dcr'}
+
+{$R *.TLB}
+{$ALIGN 8}
+{$ASSERTIONS OFF}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  vclx,
+  vcldb,
+  designide,
+  rtl,
+  vclactnband,
+  dbrtl,
+  vcljpg,
+  xmlrtl,
+  dclstd,
+  bdertl;
+
+contains
+  DirLabel in 'Source\DirLabel.pas',
+  SynEditReg in 'Source\SynEdit\SynEditReg.pas',
+  CC95_Register in 'Source\ComCtrls95\CC95_Register.pas',
+  MainInstance in 'Source\MainInstance.pas',
+  SynHighlighterText in 'Source\SynEdit\SynHighlighterText.pas',
+  HistoryList in 'Source\HistoryList.pas',
+  FontCtls in 'Source\FontCtls.pas',
+  HexEdits in 'Source\HexEdits.pas',
+  ColorPicker in 'Source\ColorPicker.pas',
+  MILAssociate in 'Source\MILAssociate.pas',
+  XPdesign in 'Source\XPdesign\XPdesign.pas',
+  TB2Reg in 'Source\tb2k\TB2Reg.pas',
+  TBXReg in 'Source\tbx\TBXReg.pas',
+  ScrollListBox in 'Source\ScrollListBox.pas',
+  ConTEXTSynEdit in 'Source\ConTEXTSynEdit.pas',
+  SynUniReg in 'Source\SynEdit\SynUniSyn\SynUniReg.pas',
+  RsRuler in 'Source\RsRuler.pas',
+  TidyLib in 'Source\Tidy\TidyLib.pas',
+  VirtualShellToolsReg in 'Source\VirtualTree\VirtualShellToolsReg.pas',
+  //VirtualExplorerListviewExReg in 'Source\VirtualTree\VirtualExplorerListviewExReg.pas',
+  //VirtualTreesReg in 'Source\VirtualTree\VirtualTreesReg.pas',
+  TrayIcon in 'Source\TrayIcon.pas',
+  //rmregister in 'Source\rmControls\rmregister.pas',
+  CommonLib_TLB in 'CommonLib_TLB.pas';
+end.

@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>tTidy Specialized Properties and Methods</title></head>
+<body bgcolor="#D0D0A0">
+
+  <div align="center">
+    <h2><font color="#606000">tTidy Specialized Properties and Methods Reference</font></h2>
+  </div>
+
+
+  <table summary="tTidy Special Properties and Methods Detail Section" align="center" border="0" cellpadding="8" cellspacing="0" bgcolor="#F0F0D0">
+    <tr valign="middle">
+      <td valign="middle"  align="center" bgcolor="#D0F0F0">
+        <br><b>tTidy Special Properties Reference</b><br>&nbsp;
+      </td>
+    </tr>
+<TR><TD bgcolor="#D0D0A0" ></TD></TR >
+    <tr valign="middle">
+      <td valign="middle"  align="center" bgcolor="#E0F0E0">
+NOTE: These properties are specific to the library implementation, and are not part of the standard Tidy configuration options.
+      </td>
+    </tr>
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="release-date"></a></TD></TR >
+    <tr><td  valign="top"><b>ReleaseDate </b>&nbsp; <i>String </i> &nbsp; (read-only) &nbsp; default: "date month year"
+    <br><br>
+    Returns a string representing the release date of the library.&nbsp; 
+    Note that this is not really  a &nbsp;<i>property</i>&nbsp;, it is a &nbsp;<i>class function</i>&nbsp;.<br> 
+    ( Which means that you can call &nbsp;<i>tTidy.ReleaseDate</i>&nbsp; directly, without having a valid instance of tTidy initialized. )
+    <br>
+    </td></tr>
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="handle"></a></TD></TR >
+    <tr><td  valign="top"><b>Handle: </b>&nbsp; <i>pTidyDoc </i> &nbsp; (read-only) &nbsp;
+    <br><br>
+      The <i>Handle</i> property exposes the library's "tidydoc" instance, so you can call library functions directly.<br>
+      Warning: <br>
+      &nbsp; DO NOT use the library's TidySetAppData() function on this !!!<br>
+      &nbsp; TidySetAppData() and TidyGetAppData() are used internally by TTidy, and should NOT be modified !!!
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="root-node"></a></TD></TR >
+    <tr><td  valign="top"><b>RootNode: </b>&nbsp; <i>pTidyNode </i> &nbsp; (read-only) &nbsp; default: nil
+    <br><br>
+      Returns a pointer to a linked-list of 
+      <a href="tidytype.htm#tidy-node-type"> TidyNode </a> 
+      records representing the structure of the parsed document.<br>
+      <br>
+      This property is initially set to <i>nil</i>, and will remain that way until the document has been <br>
+      successfully parsed by accessing the HTML, XHTML, or XML properties.<br>
+      <br>
+      You should always check that the RootNode is not nil before dereferencing the pointer or accessing the fields.<br>
+      <br>
+      If you need to access the textual content of the document while traversing the tree, <br>
+      you should set the <i>Congruent</i> property to <i>True</i> in order to ensure that the document tree <br>
+      is consistent with the string returned by the HTML, XHTML, or XML properties.<br>
+      <br>
+      Utility functions for accessing text nodes are included in the file <i>tidytext.pas</i>
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="congruent"></a></TD></TR >
+    <tr><td  valign="top"><b>Congruent: </b>&nbsp; <i>Boolean </i> &nbsp; (read/write) &nbsp; default: False
+    <br><br>
+      Setting Congruent to TRUE will cause TTidy to re-parse the output,
+      in an attempt to make the output text consistent with the document tree.<br>
+      This is needed to accurately reference the line and column index of
+      the output text while traversing the nodes of the tree.  <br>
+      In the unlikely event that this fails, Congruent will be reset to FALSE.<br>
+      Note that setting <i>Congruent:=TRUE</i> automatically sets <i>IndentContent</i> to <i>TidyFalse</i>.
+    </tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="report-callback"></a></TD></TR >
+    <tr><td  valign="top"><b>ReportCallback: </b>&nbsp; <i>TidyReportFilter </i> &nbsp; (read/write) &nbsp; default: nil
+      <br><br>
+      This function will be called whenever the library needs to display errors, warnings or other information while parsing the document.<br>
+      <br>
+      Your callback function should match this prototype:<br>
+      <tt>
+&nbsp; function( tdoc:TidyDoc; lvl:TidyReportLevel; line:uint; col:uint; mssg:ctmbstr ):Bool; cdecl;
+      </tt><br><br>
+      Returning <i>False</i> from within your function will suppress the library's default output of the message.
+      <br><br>
+      This property is generally useful for console-based applications.<br>
+      If you need a component-based GUI-style event procedure, use the <i>OnReport</i> property.
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="on-report"></a></TD></TR >
+    <tr><td  valign="top"><b>OnReport: </b>&nbsp; <i>tTidyReportEvent </i> &nbsp; (read/write) &nbsp; default: nil
+      <br><br>
+      This event will be fired whenever the library needs to display errors, warnings or other information while parsing the document.<br>
+      <br>
+      Your event procedure should match this prototype:<br>
+      <tt>
+&nbsp; procedure( sender:tObject;  level:TidyReportLevel;  line, col:cardinal;<br>
+&nbsp; &nbsp; &nbsp; msg:ansistring; var bWriteOut:Boolean  ) of object;
+      </tt><br><br>
+
+      Setting the value of <i>bWriteOut</i> to <i>False</i> from within your procedure will suppress the library's default output of the message.
+      <br><br>
+      This property is generally useful for component-based GUI-style applications.<br>
+      If you need a  console-based C-Style callback, use the <i>ReportCallback</i> property.
+    </td></tr>
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="doctype-mode"></a></TD></TR >
+    <tr><td  valign="top"><b>DoctypeMode: </b>&nbsp; <i>LongWord </i> &nbsp; (read-only) &nbsp; default: 0
+    <br><br>
+    Returns the mode that the library used to parse the document.<br>
+    This property is read-only.<br> 
+    To manually set desired doctype of the output, use the <i>DocType</i> string property.
+    <br><br>
+    </td></tr>
+
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="error-count"></a></TD></TR >
+    <tr><td  valign="top"><b>ErrorCount: </b>&nbsp; <i>LongWord </i> &nbsp; (read-only) &nbsp; default: 0
+    <br><br>
+    Returns the number of errors that the library encountered while parsing the document.<br>
+    <br>
+    </td></tr>
+    
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="warning-count"></a></TD></TR >
+    <tr><td  valign="top"><b>WarningCount: </b>&nbsp; <i>LongWord </i> &nbsp; (read-only) &nbsp; default: 0
+    <br><br>
+    Returns the number of warnings that the library encountered while parsing the document.<br>
+    <br>
+    </td></tr>
+    
+  <TR><TD bgcolor="#D0D0A0" ><BR ><a name="access-warning-count"></a></TD></TR >
+    <tr><td  valign="top"><b>AccessWarningCount: </b>&nbsp; <i>LongWord </i> &nbsp; (read-only) &nbsp; default: 0
+    <br><br>
+    Returns the number of accessibility warnings that the library encountered while parsing the document.<br>
+    <br>
+    </td></tr>    
+
+
+  <TR><TD bgcolor="#D0D0A0" ><BR ><a name="config-error-count"></a></TD></TR >
+    <tr><td  valign="top"><b>ConfigErrorCount: </b>&nbsp; <i>LongWord </i> &nbsp; (read-only) &nbsp; default: 0
+    <br><br>
+    Returns the number of configuration errors that the library encountered, <br>
+    either from parsing the configuration file, or from invalid property settings.<br>
+    <br>
+    </td></tr>    
+
+
+  <TR><TD bgcolor="#D0D0A0" ><BR ><a name="tidy-status"></a></TD></TR >
+    <tr><td  valign="top"><b>Status: </b>&nbsp; <i>LongWord </i> &nbsp; (read-only) &nbsp; default: 0
+    <br><br>
+    Returns the error/warning state of the document after it has been parsed.<br>
+    A value of <i>zero</i> means that tidy did not issue any errors or warnings, <br>
+    a value of <i>one</i> means there were warnings issued,<br>
+    and a value of <i>two</i> means that tidy issued error messages.<br>
+    <br>
+    </td></tr>    
+
+  <TR><TD bgcolor="#D0D0A0" ><BR ><a name="accessibility-check-level"></a></TD></TR >
+    <tr><td  valign="top"><b>AccessibilityCheckLevel: </b>&nbsp; <i>LongWord </i> &nbsp; (read/write) &nbsp; default: 0
+    <br><br>
+   Defines how strict the library will be when considering accessibility requirements for the document.<br>
+   Acceptable values are 0, 1, 2, or 3, with zero being the "classic" mode that most veteran tidy users
+   are accustomed to. <br>
+   Higher settings will often reveal errors which require human intervention. <br>
+   For example, there is no way that tidy can accurately generate header information for an html table.
+   <br>
+    </td></tr>    
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+    <tr valign="middle">
+      <td valign="middle"  align="center" bgcolor="#D0F0F0">
+        <br><b>tTidy Methods Reference</b><br   >&nbsp;
+      </td>
+    </tr>
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="constructor-create"></a></TD></TR >
+    <tr><td  valign="top"><b>constructor Create (aOwner : tComponent);</b>
+      <br><br>
+        Creates a new instance of tTidy, and intializes a <i>tidydoc</i> instance from the library.<br>  
+      <br>
+      Note to <i>Free Pascal</i> users:<br>
+      The <i>aOwner</i> parameter is provided for Delphi/Kylix component compatibility.<br>
+      <br>
+      I personally do not need the overhead of a specific TComponent class in Free Pascal.<br> 
+      So the "tidy.pas" unit simply redefines TComponent as TObject.<br>
+      <br>
+      If you need the streaming capability of a real TComponent in Free Pascal,<br>
+      then you can remove the &nbsp;<b><i>type TComponent=TObject;</i></b>&nbsp; definition in "tidy.pas", <br>
+      and recompile using the TComponent defintion from the "classes.pp" unit instead.<br> 
+      <br>
+      To create an instance of tTidy without a parent object, simply call: &nbsp;<tt>tTidy.Create(nil)</tt>
+      <br>&nbsp;
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="destructor-destroy"></a></TD></TR >
+    <tr><td  valign="top"><b>destructor Destroy;</b>
+      <br><br>
+        Frees the memory allocated to the tTidy instance, and releases the <i>tidydoc</i> from the library.<br>  
+      <br>&nbsp;
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="procedure-reset"></a></TD></TR >
+    <tr><td  valign="top"><b>procedure Reset;</b>
+    <br><br>
+      Releases the current document from the library, and initializes a new, empty document.<br>
+      The configuration options from the previous document are preserved, <br>
+      but the result values are reset to their default. <br>
+      <br>
+      This is needed to clear the result value of such properties as <i>Status</i> and <i>ErrorCount</i>.<br>
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="parse-file"></a></TD></TR >
+    <tr><td  valign="top"><b>procedure ParseFile( const aFilename: string)</b>
+    <br><br>
+      Tells the library to take its input from the file specified in <i>aFilename</i>.<br>
+      <br>
+      Note that this does not actually parse the document, it only tells the library where to get its input.<br>
+      The document parsing routines are not called until the <i>HTML</i>, <i>XHTML</i>, or <i>XML</i> properties are accessed.
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="parse-string"></a></TD></TR >
+    <tr><td  valign="top"><b>procedure ParseString( const aInputString: string);</b>
+    <br><br>
+      Tells the library to take its input from the string specified in <i>aInputString</i>.<br>
+      <br>
+      Note that this does not actually parse the document, it only tells the library where to get its input.<br>
+      The document parsing routines are not called until the <i>HTML</i>, <i>XHTML</i>, or <i>XML</i> properties are accessed.
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="parse-stdin"></a></TD></TR >
+    <tr><td  valign="top"><b>procedure ParseStdIn;</b>
+    <br><br>
+      Tells the library to read its input from the standard input of the current console.<br>
+      <br>
+      Note that this does not actually parse the document, it only tells the library where to get its input.<br>
+      The document parsing routines are not called until the <i>HTML</i>, <i>XHTML</i>, or <i>XML</i> properties are accessed.
+    </td></tr>
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="load-config-file"></a></TD></TR >
+    <tr><td  valign="top"><b>function LoadConfigFile(const aFileName:string): Boolean;</b>
+    <br><br>
+      Reads the configuration property settings from a disk file.<br>
+      <br>
+    </td></tr>
+
+<TR><TD bgcolor="#D0D0A0" ><BR ><a name="save-config-file"></a></TD></TR >
+    <tr><td  valign="top"><b>function SaveConfigFile(const aFileName:string): Boolean;</b>
+    <br><br>
+      Writes the configuration property settings to a disk file.<br>
+      <br>
+      Returns <i>TRUE</i> if the file was successfullly saved to disk, or <i>FALSE</i> if an error occurred.<br>
+      <br>
+      Settings are saved to a standard text file, in the format &nbsp; <b>name: value</b>
+      <br>
+      Consult the HTML-Tidy documentation for more information.<br>
+      <br>
+    </td></tr>
+
+
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+<TR><TD bgcolor="#D0D0A0" ><BR ></TD></TR >
+
+</table>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+</body>
+</html>
