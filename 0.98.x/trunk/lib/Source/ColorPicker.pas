@@ -521,10 +521,10 @@ begin
           ColPick.AutoBtn.Caption:=FAutoBtnCaption;
           ColPick.OtherBtn.Caption:=FOtherBtnCaption;
           ColPick.RegKey:=FRegKey;
-          ColPick.Left := 0;
-          ColPick.Top := 0;
-          ClientHeight:=ColPick.Height;
-          ClientWidth:=ColPick.Width;
+          ColPick.Left := Left;
+          ColPick.Top := Top;
+          ClientHeight:=ColPick.Height+ColPick.Top;
+          ClientWidth:=ColPick.Width+ColPick.Left;
           OnKeyDown:= FormKeyDown;
           OnShow:=FormShow;
           OnClose:=FormClose;
