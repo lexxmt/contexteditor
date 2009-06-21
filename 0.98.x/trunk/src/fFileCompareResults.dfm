@@ -1,9 +1,9 @@
 object fmFileCompareResults: TfmFileCompareResults
   Left = 326
   Top = 185
-  Width = 686
-  Height = 422
   Caption = 'Compare Results'
+  ClientHeight = 388
+  ClientWidth = 678
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -134,7 +134,7 @@ object fmFileCompareResults: TfmFileCompareResults
   TextHeight = 13
   object pbDiff: TProgressBar
     Left = 0
-    Top = 380
+    Top = 376
     Width = 678
     Height = 12
     Align = alBottom
@@ -186,7 +186,6 @@ object fmFileCompareResults: TfmFileCompareResults
   end
   object alCompareResults: TActionList
     Images = fmMain.ilToolbar
-    OnUpdate = alCompareResultsUpdate
     Left = 24
     Top = 60
     object acFirst: TAction

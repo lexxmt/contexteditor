@@ -59,8 +59,6 @@ type
     procedure acLastExecute(Sender: TObject);
     procedure acNextExecute(Sender: TObject);
     procedure acPrevExecute(Sender: TObject);
-    procedure alCompareResultsUpdate(Action: TBasicAction;
-      var Handled: Boolean);
     procedure acCloseExecute(Sender: TObject);
     procedure acRecompareExecute(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -235,7 +233,6 @@ var
   Reg: TRegistry;
 begin
   Reg:=TRegistry.Create;
-
   if Reg.OpenKey(FILE_COMPARE_REG_KEY, TRUE) then begin
     WinPos.length:=SizeOf(TWindowPlacement);
     GetWindowPlacement(Handle, @WinPos);
@@ -251,6 +248,7 @@ begin
     if ReadRegistryBool(Reg, 'Maximized', WindowState=wsMaximized) then
       WindowState:=wsMaximized;
   end;
+  Reg.Free;
 end;
 //------------------------------------------------------------------------------------------
 procedure TfmFileCompareResults.SaveSettings;
@@ -326,6 +324,7 @@ begin
     fsCurrent:
       if (fmMain.ActiveEditor<>nil) then begin
         result:=TStringStream.Create(fmMain.ActiveEditor.memo.Lines.Text);
+        //result:='ABC';
         FileName:=fmMain.ActiveEditor.FileName;
       end;
     fsEditingFile:
@@ -417,13 +416,6 @@ end;
 //                                     Actions
 ////////////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------------------
-procedure TfmFileCompareResults.alCompareResultsUpdate(Action: TBasicAction; var Handled: Boolean);
-begin
-  // acNext.Enabled:=fDiffViewer.NextDiffAvailable;
-  // acPrev.Enabled:=fDiffViewer.PrevDiffAvailable;
-  // acRecompare.Enabled:=(fFile1Info.Valid) and (fFile2Info.Valid);
-end;
-//------------------------------------------------------------------------------------------
 procedure TfmFileCompareResults.acFirstExecute(Sender: TObject);
 begin
   fDiffViewer.FirstDiff;
@@ -452,6 +444,7 @@ end;
 procedure TfmFileCompareResults.acCloseExecute(Sender: TObject);
 begin
   Close;
+  //TfmFileCompareResults.Destroy;
 end;
 //------------------------------------------------------------------------------------------
 
@@ -566,7 +559,7 @@ end;
 procedure TfmFileCompareResults.FormActivate(Sender: TObject);
 begin
   // nešto se èudno dogaða kad se fokusira kontrola, zbrljave se scrollbarovi
-  fDiffViewer.UpdateScrollBars;
+// fDiffViewer.UpdateScrollBars;
   // pogubi se fokus i ne radi mousewheel pa s ovim krpamo
   PostMessage(Handle, WM_NEXTDLGCTL, 0, 0);
 end;
