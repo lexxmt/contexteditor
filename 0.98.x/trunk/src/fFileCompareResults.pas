@@ -324,7 +324,6 @@ begin
     fsCurrent:
       if (fmMain.ActiveEditor<>nil) then begin
         result:=TStringStream.Create(fmMain.ActiveEditor.memo.Lines.Text);
-        //result:='ABC';
         FileName:=fmMain.ActiveEditor.FileName;
       end;
     fsEditingFile:
@@ -444,7 +443,6 @@ end;
 procedure TfmFileCompareResults.acCloseExecute(Sender: TObject);
 begin
   Close;
-  //TfmFileCompareResults.Destroy;
 end;
 //------------------------------------------------------------------------------------------
 
@@ -559,7 +557,7 @@ end;
 procedure TfmFileCompareResults.FormActivate(Sender: TObject);
 begin
   // nešto se èudno dogaða kad se fokusira kontrola, zbrljave se scrollbarovi
-// fDiffViewer.UpdateScrollBars;
+ //fDiffViewer.UpdateScrollBars;
   // pogubi se fokus i ne radi mousewheel pa s ovim krpamo
   PostMessage(Handle, WM_NEXTDLGCTL, 0, 0);
 end;
