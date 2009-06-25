@@ -22,7 +22,7 @@ uses
 type
   TfmHistory = class(TForm)
     lv: TListView;
-    acHistory: TActionList;
+    acFileExpl: TActionList;
     acRemove: TAction;
     acOpen: TAction;
     acShowPath: TAction;
@@ -40,7 +40,7 @@ type
     procedure FormDeactivate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure acHistoryUpdate(Action: TBasicAction; var Handled: Boolean);
+    procedure acFileExplUpdate(Action: TBasicAction; var Handled: Boolean);
     procedure acOpenExecute(Sender: TObject);
     procedure acRemoveExecute(Sender: TObject);
     procedure acShowPathExecute(Sender: TObject);
@@ -215,7 +215,7 @@ end;
 //				      Actions
 ////////////////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------------------
-procedure TfmHistory.acHistoryUpdate(Action: TBasicAction;
+procedure TfmHistory.acFileExplUpdate(Action: TBasicAction;
   var Handled: Boolean);
 begin
   acOpen.Enabled:=Assigned(lv.Selected);
@@ -332,12 +332,12 @@ end;
 //------------------------------------------------------------------------------------------
 procedure TfmHistory.FormActivate(Sender: TObject);
 begin
-  acHistory.State := asNormal;
+  acFileExpl.State := asNormal;
 end;
 //------------------------------------------------------------------------------------------
 procedure TfmHistory.FormDeactivate(Sender: TObject);
 begin
-  acHistory.State := asSuspended;
+  acFileExpl.State := asSuspended;
 end;
 //------------------------------------------------------------------------------------------
 procedure TfmHistory.FormDestroy(Sender: TObject);
