@@ -5,6 +5,7 @@ program ConTEXT;
 {.$DEFINE MEMCHECK}
 
 uses
+  ExceptionLog,
   Forms,
   Windows,
   SysUtils,

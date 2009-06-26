@@ -48,8 +48,6 @@ type
     TBXItem6: TTBXItem;
     TBXSeparatorItem2: TTBXSeparatorItem;
     TBXItem8: TTBXItem;
-    procedure FormDeactivate(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure acAddExecute(Sender: TObject);
     procedure acRemoveExecute(Sender: TObject);
     procedure acOpenExecute(Sender: TObject);
@@ -532,15 +530,6 @@ begin
   acShowPath.Caption:=mlStr(ML_FAV_SHOW_PATH,'&Show Path');
   acMoveUp.Caption:=mlStr(ML_FAV_MOVE_UP,'Move &Up');
   acMoveDown.Caption:=mlStr(ML_FAV_MOVE_DOWN,'Move &Down');
-end;
-procedure TfmFavorites.FormActivate(Sender: TObject);
-begin
-  acFileExpl.State := asNormal;
-end;
-//------------------------------------------------------------------------------------------
-procedure TfmFavorites.FormDeactivate(Sender: TObject);
-begin
-  acFileExpl.State := asSuspended;
 end;
 //------------------------------------------------------------------------------------------
 procedure TfmFavorites.FormDestroy(Sender: TObject);

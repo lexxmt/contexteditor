@@ -60,9 +60,9 @@ object fmHistory: TfmHistory
       TabOrder = 0
     end
   end
-  object acFileExpl: TActionList
+  object acHistory: TActionList
     Images = fmMain.ilToolbar
-    OnUpdate = acFileExplUpdate
+    OnUpdate = acHistoryUpdate
     Left = 112
     Top = 50
     object acOpen: TAction

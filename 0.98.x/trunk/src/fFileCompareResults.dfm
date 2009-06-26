@@ -186,6 +186,7 @@ object fmFileCompareResults: TfmFileCompareResults
   end
   object alCompareResults: TActionList
     Images = fmMain.ilToolbar
+    OnUpdate = alCompareResultsUpdate
     Left = 24
     Top = 60
     object acFirst: TAction
