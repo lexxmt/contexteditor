@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2009/07/14 11:58:23.126.groupproj,C:\Users\dick\Documents\RAD Studio\Projects\ProjectGroup1.groupproj=I:\ConTEXT\src\Context.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="CommonLib.bpl"/>
+	</Default.Personality>
+</BorlandProject>

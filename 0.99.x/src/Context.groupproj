@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{999126E8-2F2D-4291-8861-A1D7C79E5258}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="ConTEXT.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\lib\CommonLib.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="ConTEXT">
+			<MSBuild Projects="ConTEXT.dproj"/>
+		</Target>
+		<Target Name="ConTEXT:Clean">
+			<MSBuild Targets="Clean" Projects="ConTEXT.dproj"/>
+		</Target>
+		<Target Name="ConTEXT:Make">
+			<MSBuild Targets="Make" Projects="ConTEXT.dproj"/>
+		</Target>
+		<Target Name="CommonLib">
+			<MSBuild Projects="..\lib\CommonLib.dproj"/>
+		</Target>
+		<Target Name="CommonLib:Clean">
+			<MSBuild Targets="Clean" Projects="..\lib\CommonLib.dproj"/>
+		</Target>
+		<Target Name="CommonLib:Make">
+			<MSBuild Targets="Make" Projects="..\lib\CommonLib.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="ConTEXT;CommonLib"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="ConTEXT:Clean;CommonLib:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="ConTEXT:Make;CommonLib:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
