@@ -1,0 +1,318 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{38B16BDA-65E0-42C5-B815-74DA4E80380E}</ProjectGuid>
+			<MainSource>rmCmpLib_d12.dpk</MainSource>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DesignOnlyPackage>false</DesignOnlyPackage>
+			<DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\6.0\Bpl\rmCmpLib_d12.bpl</DCC_DependencyCheckOutputName>
+			<DCC_WriteableConstants>true</DCC_WriteableConstants>
+			<DCC_RangeChecking>true</DCC_RangeChecking>
+			<DCC_Description>rmComponent Library</DCC_Description>
+			<DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
+			<GenDll>true</GenDll>
+			<GenPackage>true</GenPackage>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_Platform>x86</DCC_Platform>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="rmCmpLib_d12.dpk">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="..\rmBtnEdit.dcr"/>
+			<DCCReference Include="..\rmCalendar.dcr"/>
+			<DCCReference Include="..\rmColorComboBox.dcr"/>
+			<DCCReference Include="..\rmColumns.dcr"/>
+			<DCCReference Include="..\rmComboBox.dcr"/>
+			<DCCReference Include="..\rmFileDrop.dcr"/>
+			<DCCReference Include="..\rmGauge.dcr"/>
+			<DCCReference Include="..\rmLabel.dcr"/>
+			<DCCReference Include="..\rmSplit.dcr"/>
+			<DCCReference Include="..\rmTabs3x.dcr"/>
+			<DCCReference Include="..\rmTaskBar.dcr"/>
+			<DCCReference Include="..\rmTrackBar.dcr"/>
+			<DCCReference Include="..\rmSpin.dcr"/>
+			<DCCReference Include="..\rmAppEvents.dcr"/>
+			<DCCReference Include="..\rmSpeedBtns.dcr"/>
+			<DCCReference Include="..\rmTVComboBox.dcr"/>
+			<DCCReference Include="..\rmPathTreeView.dcr"/>
+			<DCCReference Include="..\rmPanel.dcr"/>
+			<DCCReference Include="..\rmDataStorage.dcr"/>
+			<DCCReference Include="..\rmImageListGraphic.dcr"/>
+			<DCCReference Include="..\rmCCTabs.dcr"/>
+			<DCCReference Include="..\rmTrayIcon.dcr"/>
+			<DCCReference Include="..\rmTreeNonView.dcr"/>
+			<DCCReference Include="..\rmMDIBackground.dcr"/>
+			<DCCReference Include="..\rmSpinCombo.dcr"/>
+			<DCCReference Include="..\rmCaptionButtons.dcr"/>
+			<DCCReference Include="..\rmCollectionListbox.dcr"/>
+			<DCCReference Include="..\rmEditGrid.dcr"/>
+			<DCCReference Include="..\rmCornerGrip.dcr"/>
+			<DCCReference Include="..\rmKeyBindings.dcr"/>
+			<DCCReference Include="..\rmBrowseFor.dcr"/>
+			<DCCReference Include="..\rmDiff.dcr"/>
+			<DCCReference Include="..\rmListControl.dcr"/>
+			<DCCReference Include="..\rmOutlook.dcr"/>
+			<DCCReference Include="..\rmBtnCombo.dcr"/>
+			<DCCReference Include="..\rmOutlookExtras.dcr"/>
+			<DCCReference Include="..\rmInspector.dcr"/>
+			<DCCReference Include="..\rmDGT.dcr"/>
+			<DCCReference Include="..\rmCheckbox.dcr"/>
+			<DCCReference Include="..\rmWordTree.dcr"/>
+			<DCCReference Include="..\rmNotebook2.dcr"/>
+			<DCCReference Include="..\rmdayview.dcr"/>
+			<DCCReference Include="..\rmClock.dcr"/>
+			<DCCReference Include="vcl.dcp"/>
+			<DCCReference Include="vclx.dcp"/>
+			<DCCReference Include="vcldb.dcp"/>
+			<DCCReference Include="designide.dcp"/>
+			<DCCReference Include="rtl.dcp"/>
+			<DCCReference Include="vclactnband.dcp"/>
+			<DCCReference Include="SynEdit_R2009.dcp"/>
+			<DCCReference Include="dbrtl.dcp"/>
+			<DCCReference Include="..\rmbtnedit.pas"/>
+			<DCCReference Include="..\rmCalendar.pas"/>
+			<DCCReference Include="..\rmcolorcombobox.pas"/>
+			<DCCReference Include="..\rmColumns.pas"/>
+			<DCCReference Include="..\rmComboBox.pas"/>
+			<DCCReference Include="..\rmfiledrop.pas"/>
+			<DCCReference Include="..\rmgauge.pas"/>
+			<DCCReference Include="..\rmLabel.pas"/>
+			<DCCReference Include="..\rmregister.pas"/>
+			<DCCReference Include="..\rmsplit.pas"/>
+			<DCCReference Include="..\rmtabs3x.pas"/>
+			<DCCReference Include="..\rmTaskBar.pas"/>
+			<DCCReference Include="..\rmtrackbar.pas"/>
+			<DCCReference Include="..\rmspin.pas"/>
+			<DCCReference Include="..\rmappevents.pas"/>
+			<DCCReference Include="..\rmLibrary.pas"/>
+			<DCCReference Include="..\rmspeedbtns.pas"/>
+			<DCCReference Include="..\rmtvcombobox.pas"/>
+			<DCCReference Include="..\rmPathTreeView.pas"/>
+			<DCCReference Include="..\rmpanel.pas"/>
+			<DCCReference Include="..\rmKeyBindingPropEdit.pas"/>
+			<DCCReference Include="..\rmCCTabsReg.pas"/>
+			<DCCReference Include="..\rmimagelistgraphic.pas"/>
+			<DCCReference Include="..\rmmdibackground.pas"/>
+			<DCCReference Include="..\rmcctabs.pas"/>
+			<DCCReference Include="..\rmtrayicon.pas"/>
+			<DCCReference Include="..\rmmsglist.pas"/>
+			<DCCReference Include="..\rmTreeNonView.pas"/>
+			<DCCReference Include="..\rmTreeNonViewEdit.pas">
+				<Form>frmTreeNonViewEditor</Form>
+			</DCCReference>
+			<DCCReference Include="..\rmscrnctrls.pas"/>
+			<DCCReference Include="..\rmCaptionButtons.pas"/>
+			<DCCReference Include="..\rmglobalcomponenthook.pas"/>
+			<DCCReference Include="..\rmcollectionlistbox.pas"/>
+			<DCCReference Include="..\rmeditgrid.pas"/>
+			<DCCReference Include="..\rmcornergrip.pas"/>
+			<DCCReference Include="..\rmKeyBindings.pas"/>
+			<DCCReference Include="..\rmformeditbinding.pas">
+				<Form>rmFrmEditBinding</Form>
+			</DCCReference>
+			<DCCReference Include="..\rmdatastoragepropedit.pas"/>
+			<DCCReference Include="..\rmbrowsefor.pas"/>
+			<DCCReference Include="..\rmkeybindingseditform.pas">
+				<Form>FrmEditKeyBindings</Form>
+			</DCCReference>
+			<DCCReference Include="..\rmlistcontrol.pas"/>
+			<DCCReference Include="..\rminspector.pas"/>
+			<DCCReference Include="..\rminspectoritems.pas"/>
+			<DCCReference Include="..\rmhint.pas"/>
+			<DCCReference Include="..\rmspincombo.pas"/>
+			<DCCReference Include="..\rmbaseedit.pas"/>
+			<DCCReference Include="..\rmInspectorEdit.pas">
+				<Form>frmInspectorEditor</Form>
+			</DCCReference>
+			<DCCReference Include="..\rminspectoredit2.pas">
+				<Form>frmInspectorItemTypes</Form>
+			</DCCReference>
+			<DCCReference Include="..\rmOutlook.pas"/>
+			<DCCReference Include="..\rmbtncombo.pas"/>
+			<DCCReference Include="..\rmOutlookExtras.pas"/>
+			<DCCReference Include="..\rmOutlookReg.pas"/>
+			<DCCReference Include="..\rmdgt.pas"/>
+			<DCCReference Include="..\rmtoolwinformexpt.pas"/>
+			<DCCReference Include="..\rmtoolwin.pas"/>
+			<DCCReference Include="..\rmcheckbox.pas"/>
+			<DCCReference Include="..\rmwordtree.pas"/>
+			<DCCReference Include="..\rmscrollablecontrol.pas"/>
+			<DCCReference Include="..\rmdatastorage.pas"/>
+			<DCCReference Include="..\rmnotebookreg.pas"/>
+			<DCCReference Include="..\rmNotebook2.pas"/>
+			<DCCReference Include="..\rmdayview.pas"/>
+			<DCCReference Include="..\rmClock.pas"/>
+			<DCCReference Include="..\rmdiffmap.pas"/>
+			<DCCReference Include="..\rmDiff.pas"/>
+			<DCCReference Include="..\rmBtnEdit.dcr"/>
+			<DCCReference Include="..\rmCalendar.dcr"/>
+			<DCCReference Include="..\rmColorComboBox.dcr"/>
+			<DCCReference Include="..\rmColumns.dcr"/>
+			<DCCReference Include="..\rmComboBox.dcr"/>
+			<DCCReference Include="..\rmFileDrop.dcr"/>
+			<DCCReference Include="..\rmGauge.dcr"/>
+			<DCCReference Include="..\rmLabel.dcr"/>
+			<DCCReference Include="..\rmSplit.dcr"/>
+			<DCCReference Include="..\rmTabs3x.dcr"/>
+			<DCCReference Include="..\rmTaskBar.dcr"/>
+			<DCCReference Include="..\rmTrackBar.dcr"/>
+			<DCCReference Include="..\rmSpin.dcr"/>
+			<DCCReference Include="..\rmAppEvents.dcr"/>
+			<DCCReference Include="..\rmSpeedBtns.dcr"/>
+			<DCCReference Include="..\rmTVComboBox.dcr"/>
+			<DCCReference Include="..\rmPathTreeView.dcr"/>
+			<DCCReference Include="..\rmPanel.dcr"/>
+			<DCCReference Include="..\rmDataStorage.dcr"/>
+			<DCCReference Include="..\rmImageListGraphic.dcr"/>
+			<DCCReference Include="..\rmCCTabs.dcr"/>
+			<DCCReference Include="..\rmTrayIcon.dcr"/>
+			<DCCReference Include="..\rmTreeNonView.dcr"/>
+			<DCCReference Include="..\rmMDIBackground.dcr"/>
+			<DCCReference Include="..\rmSpinCombo.dcr"/>
+			<DCCReference Include="..\rmCaptionButtons.dcr"/>
+			<DCCReference Include="..\rmCollectionListbox.dcr"/>
+			<DCCReference Include="..\rmEditGrid.dcr"/>
+			<DCCReference Include="..\rmCornerGrip.dcr"/>
+			<DCCReference Include="..\rmKeyBindings.dcr"/>
+			<DCCReference Include="..\rmBrowseFor.dcr"/>
+			<DCCReference Include="..\rmDiff.dcr"/>
+			<DCCReference Include="..\rmListControl.dcr"/>
+			<DCCReference Include="..\rmOutlook.dcr"/>
+			<DCCReference Include="..\rmBtnCombo.dcr"/>
+			<DCCReference Include="..\rmOutlookExtras.dcr"/>
+			<DCCReference Include="..\rmInspector.dcr"/>
+			<DCCReference Include="..\rmDGT.dcr"/>
+			<DCCReference Include="..\rmCheckbox.dcr"/>
+			<DCCReference Include="..\rmWordTree.dcr"/>
+			<DCCReference Include="..\rmNotebook2.dcr"/>
+			<DCCReference Include="..\rmdayview.dcr"/>
+			<DCCReference Include="..\rmClock.dcr"/>
+			<DCCReference Include="rmBtnEdit.dcr"/>
+			<DCCReference Include="rmCalendar.dcr"/>
+			<DCCReference Include="rmColorComboBox.dcr"/>
+			<DCCReference Include="rmColumns.dcr"/>
+			<DCCReference Include="rmComboBox.dcr"/>
+			<DCCReference Include="rmFileDrop.dcr"/>
+			<DCCReference Include="rmGauge.dcr"/>
+			<DCCReference Include="rmLabel.dcr"/>
+			<DCCReference Include="rmSplit.dcr"/>
+			<DCCReference Include="rmTabs3x.dcr"/>
+			<DCCReference Include="rmTaskBar.dcr"/>
+			<DCCReference Include="rmTrackBar.dcr"/>
+			<DCCReference Include="rmSpin.dcr"/>
+			<DCCReference Include="rmAppEvents.dcr"/>
+			<DCCReference Include="rmSpeedBtns.dcr"/>
+			<DCCReference Include="rmTVComboBox.dcr"/>
+			<DCCReference Include="rmPathTreeView.dcr"/>
+			<DCCReference Include="rmPanel.dcr"/>
+			<DCCReference Include="rmDataStorage.dcr"/>
+			<DCCReference Include="rmImageListGraphic.dcr"/>
+			<DCCReference Include="rmCCTabs.dcr"/>
+			<DCCReference Include="rmTrayIcon.dcr"/>
+			<DCCReference Include="rmTreeNonView.dcr"/>
+			<DCCReference Include="rmMDIBackground.dcr"/>
+			<DCCReference Include="rmSpinCombo.dcr"/>
+			<DCCReference Include="rmCaptionButtons.dcr"/>
+			<DCCReference Include="rmCollectionListbox.dcr"/>
+			<DCCReference Include="rmEditGrid.dcr"/>
+			<DCCReference Include="rmCornerGrip.dcr"/>
+			<DCCReference Include="rmKeyBindings.dcr"/>
+			<DCCReference Include="rmBrowseFor.dcr"/>
+			<DCCReference Include="rmDiff.dcr"/>
+			<DCCReference Include="rmListControl.dcr"/>
+			<DCCReference Include="rmOutlook.dcr"/>
+			<DCCReference Include="rmBtnCombo.dcr"/>
+			<DCCReference Include="rmOutlookExtras.dcr"/>
+			<DCCReference Include="rmInspector.dcr"/>
+			<DCCReference Include="rmDGT.dcr"/>
+			<DCCReference Include="rmCheckbox.dcr"/>
+			<DCCReference Include="rmWordTree.dcr"/>
+			<DCCReference Include="rmNotebook2.dcr"/>
+			<DCCReference Include="rmdayview.dcr"/>
+			<DCCReference Include="rmClock.dcr"/>
+			<DCCReference Include="Jcl120.dcp"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>Package</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">rmCmpLib_d12.dpk</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1033</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+				</Delphi.Personality>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>
