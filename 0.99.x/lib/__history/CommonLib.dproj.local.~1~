@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2009/07/06 23:07:12.169.pas,I:\ConTEXT\lib\Source\ConTEXTSynEdit.pas=</Transaction>
+    <Transaction>2009/07/06 23:24:01.349.dcr,I:\ConTEXT\lib\Source\VirtualTree\VirtualShellToolsReg.dcr=</Transaction>
+    <Transaction>2009/07/06 23:24:03.981.pas,I:\ConTEXT\lib\Source\VirtualTree\VirtualShellToolsReg.pas=</Transaction>
+    <Transaction>2009/07/20 18:35:09.685.pas,I:\ConTEXT\lib\Source\SynEdit\SynEditReg.pas=</Transaction>
+    <Transaction>2009/07/20 19:57:05.060.pas,I:\ConTEXT\src\ConTEXTSynEdit.pas=</Transaction>
+    <Transaction>2009/07/20 20:16:10.912.pas,I:\ConTEXT\src\ConTEXTSynEdit.pas=</Transaction>
+    <Transaction>2009/07/20 20:43:45.535.pas,I:\ConTEXT\lib\Source\SynEdit\SynEditTypes.pas=</Transaction>
+    <Transaction>2009/07/20 20:55:52.272.pas,I:\ConTEXT\lib\source\synedit\SynEdit.pas=</Transaction>
+    <Transaction>2009/07/24 14:30:29.265.pas,C:\ConTEXT\lib\Source\SynEdit\SynHighlighterText.pas=</Transaction>
+    <Transaction>2009/07/24 14:30:36.796.pas,C:\ConTEXT\src\ConTEXTSynEdit.pas=</Transaction>
+  </Transactions>
+</BorlandProject>

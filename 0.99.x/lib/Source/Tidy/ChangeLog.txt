@@ -1,0 +1,17 @@
+2004-July-29: Version 1.2:
+  * [OTH] Changed the license from GPL to a joint MPL/GPL.
+
+2004-July-03: Version 1.11:
+  * [FIX] So you thought the assignment of boolean options worked in 1.1? Did it? Was
+          really a bug in 1.0? See the comment for TLibTidy.AssignConfigToTidy() in the
+          source code - I'm totally confused about that issue. Hope it works now..
+
+2004-June-24: Version 1.1:
+  * [FIX] CSSPrefix property was defined as a boolean, but is actually a string;
+  * [FIX] *ALL* the boolean configuration values were not correctly assign to LibTidy;
+  * [ENH] Updated demo program;
+  * [OTH] LibTidy is now part of the OpenWebBuilder CVS Repository at SourceForge;
+  * [OTH] Renamed component from THTMLTidy to TLibTidy;
+ 
+
+2003-October-20: Initial release of 1.0

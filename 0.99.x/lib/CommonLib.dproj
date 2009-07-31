@@ -1,0 +1,219 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{04f2589b-4e75-425f-b316-6cd24beea8be}</ProjectGuid>
+			<MainSource>CommonLib.dpk</MainSource>
+			<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+			<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\6.0\Bpl\CommonLib.bpl</DCC_DependencyCheckOutputName>
+			<ProjectVersion>12.0</ProjectVersion>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DcuOutput>Binaries\</DCC_DcuOutput>
+			<DCC_UnitSearchPath>Source\SynEdit;Source\SpTBX;Source\tb2k;Source\jedi;Source\jedi\windows;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DesignOnlyPackage>false</DesignOnlyPackage>
+			<DCC_WriteableConstants>true</DCC_WriteableConstants>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\6.0\Bpl\CommonLib.bpl</DCC_DependencyCheckOutputName>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+			<GenDll>true</GenDll>
+			<DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<GenPackage>true</GenPackage>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<Version>7.0</Version>
+			<DCC_AssertionsAtRuntime>False</DCC_AssertionsAtRuntime>
+			<DCC_DebugInformation>False</DCC_DebugInformation>
+			<DCC_WriteableConstants>True</DCC_WriteableConstants>
+			<DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_Hints>False</DCC_Hints>
+			<DCC_Warnings>False</DCC_Warnings>
+			<DCC_DcuOutput>Binaries\</DCC_DcuOutput>
+			<DCC_ObjOutput>Binaries\</DCC_ObjOutput>
+			<DCC_HppOutput>Binaries\</DCC_HppOutput>
+			<DCC_UnitSearchPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\SpTbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_ResourcePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_ResourcePath)</DCC_ResourcePath>
+			<DCC_ObjPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_ObjPath)</DCC_ObjPath>
+			<DCC_IncludePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_IncludePath)</DCC_IncludePath>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_UNSAFE_TYPE>True</DCC_UNSAFE_TYPE>
+			<DCC_UNSAFE_CODE>True</DCC_UNSAFE_CODE>
+			<DCC_UNSAFE_CAST>True</DCC_UNSAFE_CAST>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<Version>7.0</Version>
+			<DCC_AssertionsAtRuntime>False</DCC_AssertionsAtRuntime>
+			<DCC_DebugInformation>False</DCC_DebugInformation>
+			<DCC_WriteableConstants>True</DCC_WriteableConstants>
+			<DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_Hints>False</DCC_Hints>
+			<DCC_Warnings>False</DCC_Warnings>
+			<DCC_DcuOutput>Binaries\</DCC_DcuOutput>
+			<DCC_ObjOutput>Binaries\</DCC_ObjOutput>
+			<DCC_HppOutput>Binaries\</DCC_HppOutput>
+			<DCC_UnitSearchPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_ResourcePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_ResourcePath)</DCC_ResourcePath>
+			<DCC_ObjPath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_ObjPath)</DCC_ObjPath>
+			<DCC_IncludePath>Source\;Source\jedi\;Source\ComCtrls95\;Source\SynEdit\;Source\LsFileExplorer\;Source\XPdesign\;Source\tb2k\;Source\Sptbx\;Source\HexEditor\;Source\Dream\;Source\SynEdit\SynUniSyn;Source\Tidy\;Source\VirtualTree\;Source\Graphics32\;$(DCC_IncludePath)</DCC_IncludePath>
+			<DCC_UNSAFE_TYPE>True</DCC_UNSAFE_TYPE>
+			<DCC_UNSAFE_CODE>True</DCC_UNSAFE_CODE>
+			<DCC_UNSAFE_CAST>True</DCC_UNSAFE_CAST>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="CommonLib.dpk">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="Source\DirLabel.dcr"/>
+			<DCCReference Include="Source\SynEdit\SynEditReg.dcr"/>
+			<DCCReference Include="Source\MainInstance.dcr"/>
+			<DCCReference Include="Source\HistoryList.dcr"/>
+			<DCCReference Include="Source\FontCtls.dcr"/>
+			<DCCReference Include="Source\ColorPicker.dcr"/>
+			<DCCReference Include="Source\MILAssociate.dcr"/>
+			<DCCReference Include="Source\tb2k\TB2Reg.dcr"/>
+			<DCCReference Include="Source\SpTBX\SpTBXReg.dcr"/>
+			<DCCReference Include="Source\RsRuler.dcr"/>
+			<DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.dcr"/>
+			<DCCReference Include="vcl.dcp"/>
+			<DCCReference Include="vclx.dcp"/>
+			<DCCReference Include="vcldb.dcp"/>
+			<DCCReference Include="designide.dcp"/>
+			<DCCReference Include="rtl.dcp"/>
+			<DCCReference Include="vclactnband.dcp"/>
+			<DCCReference Include="dbrtl.dcp"/>
+			<DCCReference Include="xmlrtl.dcp"/>
+			<DCCReference Include="dclstd.dcp"/>
+			<DCCReference Include="SpTBXLib_d12.dcp"/>
+			<DCCReference Include="SynEdit_D2009.dcp"/>
+			<DCCReference Include="SynEdit_R2009.dcp"/>
+			<DCCReference Include="tb2k_d12.dcp"/>
+			<DCCReference Include="tb2kdsgn_d12.dcp"/>
+			<DCCReference Include="Source\DirLabel.pas"/>
+			<DCCReference Include="Source\ComCtrls95\CC95_Register.pas"/>
+			<DCCReference Include="Source\MainInstance.pas"/>
+			<DCCReference Include="Source\HistoryList.pas"/>
+			<DCCReference Include="Source\FontCtls.pas"/>
+			<DCCReference Include="Source\HexEdits.pas"/>
+			<DCCReference Include="Source\ColorPicker.pas"/>
+			<DCCReference Include="Source\MILAssociate.pas"/>
+			<DCCReference Include="Source\ScrollListBox.pas"/>
+			<DCCReference Include="Source\RsRuler.pas"/>
+			<DCCReference Include="Source\Tidy\TidyLib.pas"/>
+			<DCCReference Include="Source\TrayIcon.pas"/>
+			<DCCReference Include="Source\CustomSynEdit\ConTEXTSynEdit.pas"/>
+			<DCCReference Include="Source\CustomSynEdit\SynHighlighterText.pas"/>
+			<DCCReference Include="Source\DirLabel.dcr"/>
+			<DCCReference Include="Source\SynEdit\SynEditReg.dcr"/>
+			<DCCReference Include="Source\MainInstance.dcr"/>
+			<DCCReference Include="Source\HistoryList.dcr"/>
+			<DCCReference Include="Source\FontCtls.dcr"/>
+			<DCCReference Include="Source\ColorPicker.dcr"/>
+			<DCCReference Include="Source\MILAssociate.dcr"/>
+			<DCCReference Include="Source\tb2k\TB2Reg.dcr"/>
+			<DCCReference Include="Source\SpTBX\SpTBXReg.dcr"/>
+			<DCCReference Include="Source\RsRuler.dcr"/>
+			<DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.dcr"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>Package</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1050</VersionInfo>
+						<VersionInfo Name="CodePage">1250</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Source>
+						<Source Name="MainSource">CommonLib.dpk</Source>
+					</Source>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcldb120.bpl">CodeGear Database Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclmid120.bpl">CodeGear MyBase DataAccess Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclIndyCore120.bpl">Indy 10 Core Design Time</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclIntraweb_100_120.bpl">VCL for the Web 10.0  Design Package for CodeGear RAD Studio</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclie120.bpl">Internet Explorer Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclwbm120.bpl">CodeGear InternetExpress Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclnet120.bpl">CodeGear Internet Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclsoap120.bpl">CodeGear SOAP Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcldbx120.bpl">CodeGear dbExpress Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\RaveReports\Lib\dclRave.bpl">Rave Reports 7.6 BE Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\applet120.bpl">CodeGear Control Panel Applet Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcl31w120.bpl">Delphi 1.0 Compatibility Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclbde120.bpl">CodeGear BDE DB Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclmcn120.bpl">CodeGear DataSnap Connection Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclado120.bpl">CodeGear ADO DB Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\Bin\dclIndyProtocols120.bpl">Indy 10 Protocols Design Time</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclwebsnap120.bpl">CodeGear WebSnap Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDataSnapIndy10ServerTransport120.bpl">CodeGear DBExpress DataSnap Server Transport Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDataSnapProviderClient120.bpl">CodeGear DBExpress DataSnap Provider Client Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclDataSnapServer120.bpl">CodeGear DBExpress DataSnap Server Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcldbxcds120.bpl">CodeGear SimpleDataset Component (DBX)</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k120.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclofficexp120.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<ActiveXProjectInfo>
+					<version>1</version>
+				</ActiveXProjectInfo>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

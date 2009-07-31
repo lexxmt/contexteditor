@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+  <head>
+	<title>TMILAssociate v1.0.0  -  by Larry J. Rutledge (Millennial Software)</title>
+  </head>
+
+  <body>
+    <a name="top">
+    <div style="font-family:Arial;font-size:18;font-weight:bold">TMILAssociate&nbsp;v1.0.0</div>
+	<div style="font-family:Arial;font-size:14;font-weight:normal">by Larry J. Rutledge</div>
+	<br>
+	<div style="font-family:Arial;font-size:10;font-weight:normal">&copy; Copyright 1998, Millennial Software, All Rights Reserved</div>
+    <hr>
+	<ol>
+	  <li><a href="#description">Component Description</a>
+	  <li><a href="#property">Properties and Events</a>
+	  <li><a href="#install">Installation</a>
+	  <li><a href="#contact">Contacting the Author</a>
+	  <li><a href="#legalese">Disclaimer</a>
+	</ol>
+	<hr>
+	<a name="description">
+	<div style="font-family:Arial;font-size:14;font-weight:bold">Description</div>
+	<div style="font-family:Arial;font-size:12;font-weight:normal">
+	<br>
+    Windows file association allows you to specify what application recognizes a particular extension. For example, if on your desktop there is a file named <b>MYSTORY.DOC</b> and you have Microsoft Word installed, Windows will launch MS-Word. Word then receives the name of the document selected and opens it.<br>
+	<br>
+	In Windows 95/98/NT these associations are stored in the registry under the key <b>HKEY_CLASSES_ROOT</b>. There are two parts to the association, first a key is created with the name of the file extension (i.e. .doc). The other part is a key that the extension points to that contains all the information about the icon to display for the extension and the command to execute when the file is launched.<br>
+	<br>
+    For example, the .TXT extension is associated with NOTEPAD.EXE when Windows 95/98/NT is first installed. To accomplish this, there is a key named <b>.txt</b>, which has a description of <b>txtfile</b>. There is also a key named <b>txtfile</b>. Under the second key there are two sub-keys of importance, <b>DefaultIcon</b> and <b>Shell</b>. <b>DefaultIcon</b> indicates to Windows where the file is located that contains the icon to be displayed when the extension is represented either on the desktop or in Explorer. The default string should be the path and filename of the .EXE or .DLL or .ICO that contains the icon followed by a comma and then a number indicating the number of the icon in the file to use (i.e. <b>C:\Windows\Notepad.exe, 0</b>).<br>
+	<br>
+	<b>Shell</b> identifies what command(s) to add to the context-menu associated with the extensions icon. The most common is Open, but there can be others like Print. Any operation other than Open has to be handled by the associated application via command-line parameters. In the case of Open, there is a key under <b>Shell</b> named <b>Open</b>. Under <b>Open</b> is another key named <b>Command</b>. <b>Command</b> is where the actual command is stored. This should contain the command line to be executed (i.e. C:\Windows\Notepad.exe %1).<br>
+	<br>
+	<br>
+	<b>So, how does the component help</b><br>
+	<br>
+	Messing with one's registry is not a good thing to do, especially if you are unfamiliar with it. There is vital information stored in the registry that if manipulated can render your computer inoperatable.<br>
+	<br>
+	So if you need the ability to create file associations, TMILAssociate is just what you need. This component provides the ability to identify an application to associate an extension with and then allows you to associate extensions with the application.<br>
+	<br>
+    If you have used Windows 95/98/NT for a while, you have probably noticed that if you right-click on an icon you get a popup-menu. This is referred to as the Explorer context-menu. If there is a file association with the selected icon, the available commands (Open, Print, etc.) will be listed at the beginning of the menu. If Quick View has been enabled, there will be a menu item listed next to allow you to view the file with Quick View. TMILAssociate allows you to turn on Quick View for your associations, when it is turned on then the Quick View option appears in the Explorer context-menu for that extension.<br>
+	<br>
+	Another thing you may have noticed if you've used Windows 95/98/NT is that when you right-click on the desktop (without selecting an icon) you will receive a different shell context-menu. One of the options in this menu is <b>New</b>, and when you select it another menu opens listing various document types (i.e. Text Document, Wave Sound, etc.) TMILAssociate also allows you to turn on the option of having your extension appear in this list as well.<br>
+	<br>
+	The following code will register the current application for association and then associate the .LOG extension with it. Again, if there is already an association for .LOG, it will be stored so that if later you remove the association (maybe in you un-install process) the original .LOG association can be restored.<br>
+	<pre>
+<b>procedure</b> TForm1.FormCreate(Sender: TObject);
+<b>begin</b>
+  MILAssociate1.KeyName   := Application.Title;
+  MILAssociate1.PathToApp := Application.ExeName;
+  MILAssociate1.IconPath  := ParamStr(0);
+  MILAssociate1.Icon      := 0;
+  MILAssociate1.ShellCmd  := 'Open';
+  MILAssociate1.Shell     := Application.ExeName + ' &quot;%1&quot;';
+  MILAssociate1.TypeName  := Application.Title + ' document';
+  MILAssociate1.ShowInNew := False;
+  MILAssociate1.QuickView := True;
+
+  MILAssociate1.RegisterApp;
+<b>end</b>;
+
+<b>procedure</b> TForm1.Button1Click(Sender: TObject);
+<b>begin</b>
+  MILAssociate1.Associate('.LOG');
+<b>end</b>;
+
+<b>procedure</b> TForm1.Button2Click(Sender: TObject);
+<b>begin</b>
+  MILAssociate1.UnAssociate('.LOG');
+<b>end</b>;
+	</pre>
+	<a href="#top">Return to the top</a>
+	</div>
+	
+	<br>
+	<br>
+
+    <a name="property">	
+	<div style="font-family:Arial;font-size:14;font-weight:bold">Properties and Events</div>
+	<div style="font-family:Arial;font-size:12;font-weight:normal">
+	<br>
+	<b>Properties</b><br>
+	<ul>
+	  <li>About - Displays version and copyright information (design-time only).
+	  <li>Icon - The numeric index of the icon in the file identified by <b>IconPath</b>.
+	  <li>IconPath - The path and filename of the file that contains the icon to use.
+	  <li>KeyName - The name of the application. This name will be used to create the key in the registry when registering the application.
+	  <li>PathToApp - The path and filename of the executable to launch for this association.
+	  <li>QuickView - Indicates whether or not to include quick-view in the Explorer context-menu for this association.
+	  <li>Shell - The command line to execute when the Open command is selected.
+	  <li>ShellCmd - The command to add to the Explorer context-menu (should be <b>Open</b>).
+	  <li>ShowInNew - Indicates whether or not to include the file type in the Shell context-menu's New menu item.
+	  <li>TypeName - A description to include in the registry identifying the association.
+	</ul>
+	
+	<br>
+	<br>
+	
+	<b>Events</b>
+	<br>
+	<br>
+	<ul>
+	<i>There are currently no events for this VCL.</i>
+	</ul>
+	<br>
+	<a href="#top">Return to the top</a>
+	</div>
+	
+	<br>
+	<br>
+
+    <a name="install">	
+	<div style="font-family:Arial;font-size:14;font-weight:bold">Installation</div>
+	<br>
+    <table cellspacing="2" cellpadding="2" border="0">
+      <tr>
+        <td style="font-family:Arial;font-size:12;font-weight:normal">1. Unzip <b>associat.zip</b> to a temporary directory.</td>
+      </tr>
+      <tr>
+        <td style="font-family:Arial;font-size:12;font-weight:normal">2. Copy <b>MILAssociate.PAS</b>, <b>MILAssociate.DCR</b>, <b>MILAbout.PAS</b>, and <b>MILAbout.DFM</b> to your components directory.</td>
+      </tr>
+      <tr>
+        <td style="font-family:Arial;font-size:12;font-weight:normal">3. Install component file <b>MILAssociate.PAS</b>.</td>
+      </tr>
+      <tr>
+        <td style="font-family:Arial;font-size:12;font-weight:normal">4. The new component should appear on a tab titled "<b>Millennial</b>".</td>
+      </tr>
+    </table>
+	
+	<br>
+	<a href="#top" style="font-family:Arial;font-size:12;font-weight:normal">Return to the top</a><br>
+	
+	<br>
+	<br>
+
+    <a name="#contact">	
+	<div style="font-family:Arial;font-size:14;font-weight:bold">Contacting the author</div><br>
+	<div style="font-family:Arial;font-size:12;font-weight:normal">
+	If you have questions, comments, bug reports, modifications, etc. please contact the author at:&nbsp;
+	<a href="mailto:lrutledge@jps.net">Larry J. Rutledge</a><br>
+	<br>
+	<br>
+	TMILFlashLabel is Freeware and can be used in freeware, shareware and commercial productions without my permission. You may modify the code, but please do not forget the documentation (and the credits).<br>
+	<br>
+	You may not sell the component or the source without significant modifications.<br>
+	<br>
+	<a href="#top">Return to the top</a>
+	</div>
+	
+	<br>
+	<br>
+
+    <a name="#legalese">	
+    <div style="font-family:Arial;font-size:14;font-weight:bold">Disclaimer</div><br>
+	<div style="font-family:Arial;font-size:12;font-weight:normal">
+    This software is provided "AS IS" without any warranty of any kind, either express or implied. The entire risk as to the quality and performance of the software is with you. Should the software prove defective, you assume the cost of all necessary servicing, repair or correction. In no event shall the author, copyright holder, or any other party who may redistribute the software be liable to you for damages, including any general, special, incidental, or consequental damages arising out of the use or inability to use the software (including, but not limited to, loss of data, data being rendered inaccurate, loss of business profits, loss of business information, business interruptions, loss sustained by you or third parties, or a failure of the software to operate with any other software) even if the author, copyright holder, or other party has been advised of the possibility of such damages.<br>
+
+	<hr>
+	<br>
+	For more information on various Delphi topics, visit the on-line newsletter "Delphi Gazette". You can find it at the following address: <a href="http://www.prestwood.com/forums/delphi/sdug/newsletter">http://www.prestwood.com/forums/delphi/sdug/newsletter/</a>.
+	<br>
+	<br>
+	<br>
+	<a href="#top">Return to the top</a>
+	<hr>
+	Last Updated: December 4, 1998
+	</div>
+  </body>
+</html>
