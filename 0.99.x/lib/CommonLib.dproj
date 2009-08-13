@@ -24,12 +24,12 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DcuOutput>Binaries\</DCC_DcuOutput>
-			<DCC_UnitSearchPath>Source\SynEdit;Source\SpTBX;Source\tb2k;Source\jedi;Source\jedi\windows;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>Source\SynEdit;Source\SpTBX;Source\tb2k;Source\jedi;Source\jedi\windows;..\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DesignOnlyPackage>false</DesignOnlyPackage>
 			<DCC_WriteableConstants>true</DCC_WriteableConstants>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
-			<DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\6.0\Bpl\CommonLib.bpl</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\6.0\Bpl\CommonLib.bpl</DCC_DependencyCheckOutputName>
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 			<GenDll>true</GenDll>
 			<DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
