@@ -218,9 +218,9 @@
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">0</VersionInfo>
-						<VersionInfo Name="MinorVer">98</VersionInfo>
-						<VersionInfo Name="Release">7</VersionInfo>
-						<VersionInfo Name="Build">93</VersionInfo>
+						<VersionInfo Name="MinorVer">99</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -232,7 +232,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">ConTEXT Project Ltd</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">ConTEXT Programmers Editor</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.98.7.93</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.99.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">ConTEXT</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">(c) 2000-2009. ConTEXT Project Ltd, info@contexteditor.org</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
