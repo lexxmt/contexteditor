@@ -189,7 +189,6 @@
 				<Form>fmHTMLTidyManageProfiles</Form>
 			</DCCReference>
 			<DCCReference Include="uEditorFileHandler.pas"/>
-			<DCCReference Include="fFileExplorer.pas"/>
 			<None Include="ConTEXT.todo"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
@@ -221,7 +220,7 @@
 						<VersionInfo Name="MajorVer">0</VersionInfo>
 						<VersionInfo Name="MinorVer">98</VersionInfo>
 						<VersionInfo Name="Release">7</VersionInfo>
-						<VersionInfo Name="Build">68</VersionInfo>
+						<VersionInfo Name="Build">93</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -233,7 +232,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">ConTEXT Project Ltd</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">ConTEXT Programmers Editor</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">0.98.7.68</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">0.98.7.93</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">ConTEXT</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">(c) 2000-2009. ConTEXT Project Ltd, info@contexteditor.org</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>

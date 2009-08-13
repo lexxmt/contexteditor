@@ -33,9 +33,9 @@ object fmMain: TfmMain
   end
   object pnMainBack: TPanel
     Left = 777
-    Top = 74
+    Top = 76
     Width = 750
-    Height = 463
+    Height = 461
     Align = alClient
     BevelOuter = bvNone
     Color = clAppWorkSpace
@@ -46,7 +46,7 @@ object fmMain: TfmMain
   end
   object tabFiles: TTab95Control
     Left = 0
-    Top = 51
+    Top = 53
     Width = 768
     Height = 23
     AllowTabShifting = True
@@ -82,7 +82,7 @@ object fmMain: TfmMain
     Left = 0
     Top = 2
     Width = 768
-    Height = 49
+    Height = 51
     FixAlign = True
     object tbMainMenu: TSpTBXToolbar
       Left = 0
@@ -526,7 +526,7 @@ object fmMain: TfmMain
     end
     object tbToolbar: TSpTBXToolbar
       Left = 0
-      Top = 23
+      Top = 25
       DockPos = 4
       DockRow = 1
       FloatingMode = fmOnTopOfAllForms
@@ -629,14 +629,14 @@ object fmMain: TfmMain
   end
   object dockLeft: TSpTBXMultiDock
     Left = 0
-    Top = 74
+    Top = 76
     Width = 9
-    Height = 463
+    Height = 461
     object dpFilePanel: TSpTBXDockablePanel
       Left = 0
       Top = 0
       Width = 9
-      Height = 463
+      Height = 461
       Caption = 'File Panel'
       FloatingMode = fmOnTopOfAllForms
       TabOrder = 0
@@ -646,14 +646,14 @@ object fmMain: TfmMain
   end
   object dockBottom: TSpTBXMultiDock
     Left = 9
-    Top = 74
+    Top = 76
     Width = 768
-    Height = 463
+    Height = 461
     object dpBottom: TSpTBXDockablePanel
       Left = 0
       Top = 0
       Width = 768
-      Height = 463
+      Height = 461
       TabOrder = 0
       Visible = False
       OnClose = dpBottomClose
@@ -661,9 +661,9 @@ object fmMain: TfmMain
   end
   object dockRight: TSpTBXDock
     Left = 759
-    Top = 74
+    Top = 76
     Width = 9
-    Height = 463
+    Height = 461
     Position = dpRight
   end
   object pnMainStatus: TStatusBar
@@ -842,13 +842,6 @@ object fmMain: TfmMain
     SymbolAttri.Foreground = clGray
     Left = 328
     Top = 96
-  end
-  object hlTxt: TSynTextSyn
-    DefaultFilter = 'Text files (*.txt,*.*)|*.txt;*.*'
-    SpaceAttri.Background = clWindow
-    SpaceAttri.Foreground = clWindowText
-    Left = 216
-    Top = 112
   end
   object hlSQL: TSynSQLSyn
     DefaultFilter = 'SQL files (*.sql)|*.sql'
@@ -4135,5 +4128,13 @@ object fmMain: TfmMain
     object TBXItem57: TSpTBXItem
       Action = acEditCopyFilename
     end
+  end
+  object hlTxt: TSynNewTextSyn
+    DefaultFilter = 'Text Files (*.*;*.txt;*.ini)|*.*;*.txt;*.ini'
+    IdentifierAttri.Background = clWindow
+    IdentifierAttri.Foreground = clWindowText
+    IdentifierChars = '_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    Left = 176
+    Top = 368
   end
 end

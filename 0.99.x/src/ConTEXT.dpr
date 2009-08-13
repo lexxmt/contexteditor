@@ -58,11 +58,11 @@ uses
   uHTMLTidy in 'uHTMLTidy.pas',
   fHTMLTidyProfile in 'fHTMLTidyProfile.pas' {fmHTMLTidyProfile},
   fHTMLTidyManageProfiles in 'fHTMLTidyManageProfiles.pas' {fmHTMLTidyManageProfiles},
-  uEditorFileHandler in 'uEditorFileHandler.pas',
-  fFileExplorer in 'fFileExplorer.pas';
+  uEditorFileHandler in 'uEditorFileHandler.pas';
 
 {$R *.RES}
 {$R _ConTEXT_.RES}
+{$R XPDESIGN.RES}
 
 begin
   {$IFDEF MEMCHECK}
