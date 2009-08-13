@@ -86,7 +86,8 @@ uses
   SpTBXEditors,
   fBottomWindowContainer,
   JclSysInfo,
-  AppEvnts, SynHighlighterGeneral;
+  AppEvnts,
+  SynHighlighterGeneral, SynHighlighterNewText;
 
 type
   TfmMain = class(TForm)
@@ -98,7 +99,6 @@ type
     hlPas: TSynPasSyn;
     hlSQL: TSynSQLSyn;
     hlPython: TSynPythonSyn;
-    hlTxt: TSynTextSyn;
     pnMainBack: TPanel;
     hlPHP: TSynPHPSyn;
     hlTCL: TSynTclTkSyn;
@@ -442,6 +442,7 @@ type
     mruFiles: TSpTBXMRUListItem;
     mruProjects: TSpTBXMRUListItem;
     TBControlItem1: TTBControlItem;
+    hlTxt: TSynNewTextSyn;
     procedure FormShow(Sender: TObject);
     procedure tabFilesChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
