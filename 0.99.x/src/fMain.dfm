@@ -4129,7 +4129,7 @@ object fmMain: TfmMain
       Action = acEditCopyFilename
     end
   end
-  object hlTxt: TSynNewTextSyn
+  object hlTxt: TSynTextSyn
     DefaultFilter = 'Text Files (*.*;*.txt;*.ini)|*.*;*.txt;*.ini'
     IdentifierAttri.Background = clWindow
     IdentifierAttri.Foreground = clWindowText

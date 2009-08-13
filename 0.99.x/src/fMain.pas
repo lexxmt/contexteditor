@@ -87,7 +87,7 @@ uses
   fBottomWindowContainer,
   JclSysInfo,
   AppEvnts,
-  SynHighlighterGeneral, SynHighlighterNewText;
+  SynHighlighterGeneral;
 
 type
   TfmMain = class(TForm)
@@ -442,7 +442,7 @@ type
     mruFiles: TSpTBXMRUListItem;
     mruProjects: TSpTBXMRUListItem;
     TBControlItem1: TTBControlItem;
-    hlTxt: TSynNewTextSyn;
+    hlTxt: TSynTextSyn;
     procedure FormShow(Sender: TObject);
     procedure tabFilesChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
