@@ -23,6 +23,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_StringChecks>off</DCC_StringChecks>
 			<DCC_DcuOutput>Binaries\</DCC_DcuOutput>
 			<DCC_UnitSearchPath>Source\SynEdit;Source\SpTBX;Source\tb2k;Source\jedi;Source\jedi\windows;..\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DesignOnlyPackage>false</DesignOnlyPackage>
