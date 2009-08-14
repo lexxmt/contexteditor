@@ -842,7 +842,7 @@ object fmAbout: TfmAbout
     Width = 44
     Height = 13
     Alignment = taRightJustify
-    Caption = 'v0.98.7'
+    Caption = 'v0.99.0'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGray
     Font.Height = -11

@@ -308,13 +308,6 @@ begin
   TStringList(fKeyWords5).Sorted := True;
   TStringList(fKeyWords5).Duplicates := dupIgnore;
 
-  fCommentAttri := TSynHighlighterAttributes.Create(SYNS_AttrComment, SYNS_FriendlyAttrComment);
-  fCommentAttri.Style := [fsItalic];
-
-  AddAttribute(fCommentAttri);
-  fIdentifierAttri := TSynHighlighterAttributes.Create(SYNS_AttrIdentifier, SYNS_FriendlyAttrAreaAIdentifier);
-  AddAttribute(fIdentifierAttri);
-
   fKeyAttri1 := TSynHighlighterAttributes.Create('Keywords 1', 'Keywords 1');
   fKeyAttri1.Style := [];
   AddAttribute(fKeyAttri1);
@@ -334,20 +327,6 @@ begin
   fKeyAttri5 := TSynHighlighterAttributes.Create('Keywords 5', 'Keywords 5');
   fKeyAttri5.Style := [];
   AddAttribute(fKeyAttri5);
-
-  fNumberAttri := TSynHighlighterAttributes.Create(SYNS_AttrNumber, SYNS_FriendlyAttrNumber);
-  AddAttribute(fNumberAttri);
-  fSpaceAttri := TSynHighlighterAttributes.Create(SYNS_AttrSpace, SYNS_FriendlyAttrSpace);
-  AddAttribute(fSpaceAttri);
-  fStringAttri := TSynHighlighterAttributes.Create(SYNS_AttrString, SYNS_FriendlyAttrString);
-  AddAttribute(fStringAttri);
-  fSymbolAttri := TSynHighlighterAttributes.Create(SYNS_AttrSymbol, SYNS_FriendlyAttrSymbol);
-  AddAttribute(fSymbolAttri);
-  {begin}// DJLP 2000-06-18
-  fPreprocessorAttri := TSynHighlighterAttributes.Create(SYNS_AttrPreprocessor, SYNS_FriendlyAttrPreprocessor);
-  AddAttribute(fPreprocessorAttri);
-  {end}// DJLP 2000-06-18
-  SetAttributesOnChange(DefHighlightChange);
 
   fIdentChars := inherited IdentifierChars;
   NumConstChars := '0123456789';
