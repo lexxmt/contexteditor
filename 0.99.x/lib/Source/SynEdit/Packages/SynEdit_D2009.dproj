@@ -48,12 +48,17 @@
 			<DelphiCompile Include="SynEdit_D2009.dpk">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="..\Source\SynEditReg.dcr"/>
+			<DCCReference Include="..\SynEditReg.dcr"/>
 			<DCCReference Include="designide.dcp"/>
 			<DCCReference Include="SynEdit_R2009.dcp"/>
-			<DCCReference Include="..\Source\SynEditReg.pas"/>
-			<DCCReference Include="..\Source\SynEditPropertyReg.pas"/>
-			<DCCReference Include="..\Source\SynHighlighterManager.pas"/>
+			<DCCReference Include="..\SynEditReg.pas"/>
+			<DCCReference Include="..\SynEditPropertyReg.pas"/>
+			<DCCReference Include="..\SynHighlighterManager.pas"/>
+			<DCCReference Include="..\e\SynEditReg.dcr"/>
+			<DCCReference Include="..\ce\SynEditReg.dcr"/>
+			<DCCReference Include="..\rce\SynEditReg.dcr"/>
+			<DCCReference Include="..\urce\SynEditReg.dcr"/>
+			<DCCReference Include="..\ource\SynEditReg.dcr"/>
 			<DCCReference Include="..\Source\SynEditReg.dcr"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
