@@ -42,7 +42,7 @@ uses
   ShellAPI,
   uMultiLanguage,
   StdCtrls,
-  SynHighlighterText,
+  //SynHighlighterText,
   SynEditTextBuffer,
   JclStrings,
   SynEditMiscClasses,
