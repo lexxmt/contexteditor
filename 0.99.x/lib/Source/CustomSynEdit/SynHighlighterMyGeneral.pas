@@ -57,8 +57,6 @@ type
     fKeyAttri4: TSynHighlighterAttributes;
     fKeyAttri5: TSynHighlighterAttributes;
 
-    fNumberAttri: TSynHighlighterAttributes;
-    fPreprocessorAttri: TSynHighlighterAttributes; // DJLP 2000-06-18
     fKeyWords1: TStrings;
     fKeyWords2: TStrings;
     fKeyWords3: TStrings;
@@ -232,7 +230,7 @@ var
       s := UpperCase(CommentList[i]);
       if (Length(s) > 0) then
       begin
-        if Pos(s[1], fIdentChars) > 0 then
+        if Pos(s[1], IdentifierChars) > 0 then
         begin
           fProcTable[s[1]] := proc;
           fProcTable[LowerCase(s[1])[1]] := proc;
@@ -328,7 +326,6 @@ begin
   fKeyAttri5.Style := [];
   AddAttribute(fKeyAttri5);
 
-  fIdentChars := inherited IdentifierChars;
   NumConstChars := '0123456789';
   NumBegChars := '0123456789';
   fRange := rsUnknown;
@@ -400,8 +397,8 @@ begin
       ok := ok and (i - 1 = len);
     end;
 
-    if ok and ContainsStr(CommentStr[1], fIdentChars) then
-      ok := not ContainsStr(FLine[Run + Length(CommentStr)], fIdentChars);
+    if ok and ContainsStr(CommentStr[1], IdentifierChars) then
+      ok := not ContainsStr(FLine[Run + Length(CommentStr)], IdentifierChars);
 
     if ok then
       BREAK;
@@ -431,7 +428,7 @@ begin
   else
   begin
     //!!!!!!!!!!!!!!!!!!!!!
-    if (Length(CommentStr) > 0) and ContainsStr(CommentStr[1], fIdentChars) then
+    if (Length(CommentStr) > 0) and ContainsStr(CommentStr[1], IdentifierChars) then
       IdentProc
     else
     begin
@@ -476,7 +473,7 @@ begin
     else
     begin
       //!!!!!!!!!!!!!!!!!!!!!
-      if (Length(CommentStr) > 0) and ContainsStr(CommentStr[1], fIdentChars) then
+      if (Length(CommentStr) > 0) and ContainsStr(CommentStr[1], IdentifierChars) then
         IdentProc
       else
       begin
@@ -644,19 +641,19 @@ end;
 function TSynMyGeneralSyn.GetTokenAttribute: TSynHighlighterAttributes;
 begin
   case fTokenID of
-    tkComment: Result := fCommentAttri;
-    tkIdentifier: Result := fIdentifierAttri;
+    tkComment: Result := CommentAttri;
+    tkIdentifier: Result := IdentifierAttri;
     tkKey1: Result := fKeyAttri1;
     tkKey2: Result := fKeyAttri2;
     tkKey3: Result := fKeyAttri3;
     tkKey4: Result := fKeyAttri4;
     tkKey5: Result := fKeyAttri5;
-    tkNumber: Result := fNumberAttri;
-    tkPreprocessor: Result := fPreprocessorAttri; // DJLP 2000-06-18
-    tkSpace: Result := fSpaceAttri;
-    tkString: Result := fStringAttri;
-    tkSymbol: Result := fSymbolAttri;
-    tkUnknown: Result := fSymbolAttri;
+    tkNumber: Result := NumberAttri;
+    tkPreprocessor: Result := PreprocessorAttri; // DJLP 2000-06-18
+    tkSpace: Result := SpaceAttri;
+    tkString: Result := StringAttri;
+    tkSymbol: Result := SymbolAttri;
+    tkUnknown: Result := SymbolAttri;
   else
     Result := nil;
   end;
