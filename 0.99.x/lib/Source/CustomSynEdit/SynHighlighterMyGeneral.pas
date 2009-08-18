@@ -24,23 +24,6 @@ type
   TProcTableProc = procedure of object;
 
 type
-  TCodeBrowserSettings = class
-  private
-    fGroupBy: integer;
-    fGroupCaption: string;
-    fItemCaption: string;
-    fRegExp: string;
-    fModified: boolean;
-  public
-    procedure LoadDefaults; virtual;
-    procedure Assign(Source: TCodeBrowserSettings); virtual;
-    property RegExp: string read fRegExp write fRegExp;
-    property GroupBy: integer read fGroupBy write fGroupBy;
-    property GroupCaption: string read fGroupCaption write fGroupCaption;
-    property ItemCaption: string read fItemCaption write fItemCaption;
-    property Modified: boolean read fModified write fModified;
-  end;
-
   TSynMyGeneralSyn = class(TSynGeneralSyn)
   private
     FLanguageName: string;
@@ -77,7 +60,6 @@ type
     FNextStringEndChar: char;
 
     //Identifiers: array[#0..#255] of ByteBool;
-    fCodeBrowserSettings: TCodeBrowserSettings;
 
     procedure AsciiCharProc;
     function MatchComment(CommentList: TStringList; var CommentStr: string): boolean;
@@ -142,7 +124,6 @@ type
     property KeyWords3: TStrings read fKeyWords3 write SetKeyWords3;
     property KeyWords4: TStrings read fKeyWords4 write SetKeyWords4;
     property KeyWords5: TStrings read fKeyWords5 write SetKeyWords5;
-    property CodeBrowserSettings: TCodeBrowserSettings read fCodeBrowserSettings write fCodeBrowserSettings;
   end;
 
 procedure Register;
@@ -159,20 +140,6 @@ const
 procedure Register;
 begin
   RegisterComponents(SYNS_HighlightersPage, [TSynMyGeneralSyn]);
-end;
-
-procedure TCodeBrowserSettings.Assign(Source: TCodeBrowserSettings);
-begin
-  fRegExp := Source.RegExp;
-  fGroupBy := Source.GroupBy;
-  fGroupCaption := Source.GroupCaption;
-  fItemCaption := Source.ItemCaption;
-  fModified := Source.Modified;
-end;
-
-procedure TCodeBrowserSettings.LoadDefaults;
-begin
-  // virtual holder
 end;
 
 procedure TSynMyGeneralSyn.AssignPropertiesTo(HL: TSynMyGeneralSyn);
