@@ -1,13 +1,15 @@
-#summary One-sentence summary of this page.
+Contributing  
+Ways to get involved in the Open Source ConTEXT Project.
+Getting Involved
 
-= Introduction =
+To build and maintain the best programmers' editor requires a lot of work. If you have some free time and would like to contribute to the development of ConTEXT then we would be happy to welcome you to our community. There are several ways that you can contribute:
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Make suggestions for improvements. The best place to do that is here -> http://forum.contexteditor.org/project.php?do=issuelist&projectid=1&issuetypeid=feature.
+Submit bug reports. If you are using an official release then please report here -> http://forum.contexteditor.org/project.php?do=issuelist&projectid=1&issuetypeid=bug. If you are using a test release or working with source from SVN please use the Issue Tracker here -> http://code.google.com/p/contexteditor/issues/list.
+Test the program.
+Helpfile writing, perhaps even instructional videos with wink -> http://debugmode.com/wink/.
+Source code reformatting and/or documentation.
+Bug fixing.
+Feature implementing.
+Porting to FreePascal? -> http://www.freepascal.org/ & Lazarus -> http://www.lazarus.freepascal.org/.
+This is not a comprehensive list. If you have other ideas or suggestions please contact us -> info@contexteditor.org.
