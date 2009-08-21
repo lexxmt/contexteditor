@@ -54,6 +54,7 @@
 			<DCCReference Include="..\SynEditReg.pas"/>
 			<DCCReference Include="..\SynEditPropertyReg.pas"/>
 			<DCCReference Include="..\SynHighlighterManager.pas"/>
+			<DCCReference Include="..\SynEditReg.dcr"/>
 			<DCCReference Include="..\e\SynEditReg.dcr"/>
 			<DCCReference Include="..\ce\SynEditReg.dcr"/>
 			<DCCReference Include="..\rce\SynEditReg.dcr"/>
