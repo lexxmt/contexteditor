@@ -43,8 +43,8 @@ type
     fKeyWords1: TStrings;
     fKeyWords2: TStrings;
     fKeyWords3: TStrings;
-    fKeyWords5: TStrings;
     fKeyWords4: TStrings;
+    fKeyWords5: TStrings;
 
     fNumConstChars: string;
     fNumBegChars: string;
@@ -81,6 +81,8 @@ type
     procedure SetNumBegChars(const Value: string);
     procedure SetLanguageName(Value: string);
     procedure PrepareKeywordList(const Value: TStrings);
+  protected
+    procedure IdentProc; override;
   public
     CurrLineHighlighted: boolean;
     OverrideTxtFgColor: boolean;
@@ -97,6 +99,7 @@ type
     Description: string;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    function IsKeyword(const AKeyword: String; const AKeywordList: TStrings): Boolean; reintroduce;
     procedure SetLine(const NewValue: string; LineNumber: Integer); override;
     function GetToken: string; override;
     function GetTokenPos: Integer; override;
@@ -623,6 +626,53 @@ begin
     tkUnknown: Result := SymbolAttri;
   else
     Result := nil;
+  end;
+end;
+
+procedure TSynMyGeneralSyn.IdentProc;
+begin
+  while IsIdentChar(fLine[Run]) do
+    inc(Run);
+  if IsKeyWord(GetToken, fKeyWords1) then
+    fTokenId := tkKey1
+  else
+  if IsKeyWord(GetToken, fKeyWords2) then
+    fTokenId := tkKey2
+  else
+  if IsKeyWord(GetToken, fKeyWords3) then
+    fTokenId := tkKey3
+  else
+  if IsKeyWord(GetToken, fKeyWords4) then
+    fTokenId := tkKey4
+  else
+  if IsKeyWord(GetToken, fKeyWords5) then
+    fTokenId := tkKey5
+  else
+    fTokenId := tkIdentifier;
+end;
+
+function TSynMyGeneralSyn.IsKeyword(const AKeyword: String; const AKeywordList: TStrings): Boolean;
+var
+  First, Last, I, Compare: Integer;
+  Token: String;
+begin
+  First := 0;
+  Last := AKeywordList.Count - 1;
+  Result := False;
+  Token := UpperCase(AKeyword);
+  while First <= Last do
+  begin
+    I := (First + Last) shr 1;
+    Compare := WideCompareText(AKeywordList[i], Token);
+    if Compare = 0 then
+    begin
+      Result := True;
+      break;
+    end
+    else if Compare < 0 then
+      First := I + 1
+    else
+      Last := I - 1;
   end;
 end;
 
