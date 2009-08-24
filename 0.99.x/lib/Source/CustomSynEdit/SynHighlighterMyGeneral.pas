@@ -17,28 +17,31 @@ uses
   JclStrings;
 
 type
-  TtkTokenKind = (tkComment, tkIdentifier, tkKey1, tkKey2, tkKey3, tkKey4, tkKey5, tkNull, tkNumber, tkPreprocessor, tkSpace, tkString, tkSymbol, tkUnknown); // DJLP 2000-06-18
-
+  TtkTokenKind = (tkComment, tkIdentifier, tkKey, tkNull, tkNumber, tkPreprocessor, tkSpace, tkString, tkSymbol, tkUnknown, tkKey2, tkKey3, tkKey4, tkKey5); // DJLP 2000-06-18
   TRangeState = (rsANil, rsBlockComment, rsMultilineString, rsUnKnown);
 
   TProcTableProc = procedure of object;
 
 type
-  TSynMyGeneralSyn = class(TSynGeneralSyn)
+  TSynMyGeneralSyn = class(TSynCustomHighlighter)
   private
     FLanguageName: string;
     fRange: TRangeState;
-    fLine: PChar;
     fProcTable: array[#0..#255] of TProcTableProc;
-    Run: LongInt;
-    fTokenPos: Integer;
     fTokenID: TtkTokenKind;
-    fLineNumber: Integer;
     fKeyAttri1: TSynHighlighterAttributes;
     fKeyAttri2: TSynHighlighterAttributes;
     fKeyAttri3: TSynHighlighterAttributes;
     fKeyAttri4: TSynHighlighterAttributes;
     fKeyAttri5: TSynHighlighterAttributes;
+
+    fComments: TCommentStyles;
+    fCommentAttri: TSynHighlighterAttributes;
+    fIdentifierAttri: TSynHighlighterAttributes;
+    fIdentChars: UnicodeString;
+    fSpaceAttri: TSynHighlighterAttributes;
+    fStringAttri: TSynHighlighterAttributes;
+    fSymbolAttri: TSynHighlighterAttributes;
 
     fKeyWords1: TStrings;
     fKeyWords2: TStrings;
@@ -58,8 +61,23 @@ type
     FStrEndChars: string;
     FMultilineStrings: boolean;
     FNextStringEndChar: char;
-
-    //Identifiers: array[#0..#255] of ByteBool;
+    fPreprocessorAttri: TSynHighlighterAttributes;
+    fNumberAttri: TSynHighlighterAttributes;
+    fDetectPreprocessor: boolean;
+    fStringDelimCh: WideChar;
+    FSourceFileName: string;
+    FDescription: string;
+    FCaseSensitive: boolean;
+    FCurrLineHighlighted: boolean;
+    FOverrideTxtFgColor: boolean;
+    FRightEdgeColorFg: TColor;
+    FRightEdgeColorBg: TColor;
+    FHelpFile: string;
+    FIdentifierBegChars: string;
+    FEscapeChar: char;
+    FBlockAutoindent: boolean;
+    FBlockBegStr: string;
+    FBlockEndStr: string;
 
     procedure AsciiCharProc;
     function MatchComment(CommentList: TStringList; var CommentStr: string): boolean;
@@ -81,27 +99,24 @@ type
     procedure SetNumBegChars(const Value: string);
     procedure SetLanguageName(Value: string);
     procedure PrepareKeywordList(const Value: TStrings);
-  protected
-    procedure IdentProc; override;
+    procedure MyNumberProc;
+    procedure MyIntegerProc;
+    procedure MyCRProc;
+    procedure MyLFProc;
+    procedure MyNullProc;
+    function GetIdentifierChars: UnicodeString;
+    function GetStringDelim: TStringDelim;
+    procedure SetDetectPreprocessor(const Value: boolean);
+    procedure SetIdentifierChars(const Value: UnicodeString);
+    procedure SetStringDelim(const Value: TStringDelim);
+    procedure MyIdentProc;
+    procedure SetComments(Value: TCommentStyles);
+    function GetTokenID: TtkTokenKind;
   public
-    CurrLineHighlighted: boolean;
-    OverrideTxtFgColor: boolean;
-    RightEdgeColorFg: TColor;
-    RightEdgeColorBg: TColor;
-    HelpFile: string;
-    CaseSensitive: boolean;
-    IdentifierBegChars: string;
-    SourceFileName: string;
-    EscapeChar: char;
-    BlockAutoindent: boolean;
-    BlockBegStr: string;
-    BlockEndStr: string;
-    Description: string;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    function GetEol: Boolean; override;
     function IsKeyword(const AKeyword: String; const AKeywordList: TStrings): Boolean; reintroduce;
-    procedure SetLine(const NewValue: string; LineNumber: Integer); override;
-    function GetToken: string; override;
     function GetTokenPos: Integer; override;
     procedure Next; override;
     procedure SetRange(Value: Pointer); override;
@@ -112,11 +127,27 @@ type
     procedure SetStringParams(StrBegChars, StrEndChars: string; MultilineStrings: boolean);
     procedure MakeMethodTables;
     procedure AssignPropertiesTo(HL: TSynMyGeneralSyn);
+    function GetDefaultAttribute(Index: integer): TSynHighlighterAttributes;override;
+    function GetTokenKind: integer; override;
     class function GetLanguageName: string; override;
   published
     property LanguageName: string read FLanguageName write SetLanguageName;
     property NumConstChars: string read GetNumConstChars write SetNumConstChars;
     property NumBegChars: string read GetNumBegChars write SetNumBegChars;
+
+    property CommentAttri: TSynHighlighterAttributes read fCommentAttri write fCommentAttri;
+    property Comments: TCommentStyles read fComments write SetComments;
+    property DetectPreprocessor: boolean read fDetectPreprocessor write SetDetectPreprocessor;
+    property IdentifierAttri: TSynHighlighterAttributes read fIdentifierAttri write fIdentifierAttri;
+    property IdentifierChars: UnicodeString read GetIdentifierChars write SetIdentifierChars;
+
+    property NumberAttri: TSynHighlighterAttributes read fNumberAttri write fNumberAttri;
+    property PreprocessorAttri: TSynHighlighterAttributes read fPreprocessorAttri write fPreprocessorAttri;
+    property SpaceAttri: TSynHighlighterAttributes read fSpaceAttri write fSpaceAttri;
+    property StringAttri: TSynHighlighterAttributes read fStringAttri write fStringAttri;
+    property SymbolAttri: TSynHighlighterAttributes read fSymbolAttri write fSymbolAttri;
+    property StringDelim: TStringDelim read GetStringDelim write SetStringDelim default sdSingleQuote;
+
     property KeyAttri1: TSynHighlighterAttributes read fKeyAttri1 write fKeyAttri1;
     property KeyAttri2: TSynHighlighterAttributes read fKeyAttri2 write fKeyAttri2;
     property KeyAttri3: TSynHighlighterAttributes read fKeyAttri3 write fKeyAttri3;
@@ -127,6 +158,20 @@ type
     property KeyWords3: TStrings read fKeyWords3 write SetKeyWords3;
     property KeyWords4: TStrings read fKeyWords4 write SetKeyWords4;
     property KeyWords5: TStrings read fKeyWords5 write SetKeyWords5;
+
+    property SourceFileName: string read FSourceFileName write FSourceFileName;
+    property Description: string read FDescription write FDescription;
+    property CaseSensitive: boolean read FCaseSensitive write FCaseSensitive;
+    property CurrLineHighlighted: boolean read FCurrLineHighlighted write FCurrLineHighlighted;
+    property OverrideTxtFgColor: boolean read FOverrideTxtFgColor write FOverrideTxtFgColor;
+    property RightEdgeColorFg: TColor read FRightEdgeColorFg write FRightEdgeColorFg;
+    property RightEdgeColorBg: TColor read FRightEdgeColorBg write FRightEdgeColorBg;
+    property HelpFile: string read FHelpFile write FHelpFile;
+    property IdentifierBegChars: string read FIdentifierBegChars write FIdentifierBegChars;
+    property EscapeChar: char read FEscapeChar write FEscapeChar;
+    property BlockAutoindent: boolean read FBlockAutoindent write FBlockAutoindent;
+    property BlockBegStr: string read FBlockBegStr write FBlockBegStr;
+    property BlockEndStr: string read FBlockEndStr write FBlockEndStr;
   end;
 
 procedure Register;
@@ -215,21 +260,22 @@ var
 begin
   for I := #0 to #255 do
   begin
+    fProcTable[I] := MyIdentProc;
     if (Pos(I, IdentifierBegChars) > 0) then
     begin
-      fProcTable[I] := IdentProc;
+      fProcTable[I] := MyIdentProc;
     end
     else
     begin
       if Pos(I, fNumBegChars) > 0 then
-        fProcTable[I] := NumberProc
+        fProcTable[I] := MyNumberProc
       else
       begin
         case I of
           '#': fProcTable[I] := AsciiCharProc;
-          #13: fProcTable[I] := CRProc;
-          #10: fProcTable[I] := LFProc;
-          #0: fProcTable[I] := NullProc;
+          #13: fProcTable[I] := MyCRProc;
+          #10: fProcTable[I] := MyLFProc;
+          #0: fProcTable[I] := MyNullProc;
           //        '0'..'9': fProcTable[I] := NumberProc;
           #1..#9, #11, #12, #14..#32: fProcTable[I] := SpaceProc;
         else
@@ -276,6 +322,28 @@ begin
   TStringList(fKeyWords5).Sorted := True;
   TStringList(fKeyWords5).Duplicates := dupIgnore;
 
+  fCommentAttri := TSynHighlighterAttributes.Create(SYNS_AttrComment, SYNS_FriendlyAttrComment);
+  fCommentAttri.Style := [fsItalic];
+  AddAttribute(fCommentAttri);
+
+  fIdentifierAttri := TSynHighlighterAttributes.Create(SYNS_AttrIdentifier, SYNS_FriendlyAttrIdentifier);
+  AddAttribute(fIdentifierAttri);
+
+  fNumberAttri := TSynHighlighterAttributes.Create(SYNS_AttrNumber, SYNS_FriendlyAttrNumber);
+  AddAttribute(fNumberAttri);
+
+  fSpaceAttri := TSynHighlighterAttributes.Create(SYNS_AttrSpace, SYNS_FriendlyAttrSpace);
+  AddAttribute(fSpaceAttri);
+
+  fStringAttri := TSynHighlighterAttributes.Create(SYNS_AttrString, SYNS_FriendlyAttrString);
+  AddAttribute(fStringAttri);
+
+  fSymbolAttri := TSynHighlighterAttributes.Create(SYNS_AttrSymbol, SYNS_FriendlyAttrSymbol);
+  AddAttribute(fSymbolAttri);
+
+  fPreprocessorAttri := TSynHighlighterAttributes.Create(SYNS_AttrPreprocessor, SYNS_FriendlyAttrPreprocessor);
+  AddAttribute(fPreprocessorAttri);
+
   fKeyAttri1 := TSynHighlighterAttributes.Create('Keywords 1', 'Keywords 1');
   fKeyAttri1.Style := [];
   AddAttribute(fKeyAttri1);
@@ -299,7 +367,17 @@ begin
   NumConstChars := '0123456789';
   NumBegChars := '0123456789';
   fRange := rsUnknown;
-end; { Create }
+end;
+
+procedure TSynMyGeneralSyn.MyCRProc;
+begin
+  fTokenID := tkSpace;
+  Inc(Run);
+  if fLine[Run] = #10 then
+    Inc(Run);
+end;
+
+{ Create }
 
 destructor TSynMyGeneralSyn.Destroy;
 begin
@@ -315,14 +393,6 @@ begin
 
   inherited Destroy;
 end; { Destroy }
-
-procedure TSynMyGeneralSyn.SetLine(const NewValue: string; LineNumber: Integer);
-begin
-  fLine := PChar(NewValue);
-  Run := 0;
-  fLineNumber := LineNumber;
-  Next;
-end; { SetLine }
 
 procedure TSynMyGeneralSyn.AsciiCharProc;
 begin
@@ -379,6 +449,13 @@ begin
   result := ok;
 end;
 
+procedure TSynMyGeneralSyn.MyLFProc;
+begin
+  fTokenID := tkSpace;
+  Inc(Run);
+  if fLine[Run] = #10 then Inc(Run);
+end;
+
 procedure TSynMyGeneralSyn.LineCommentProc;
 var
   CommentStr: string;
@@ -397,9 +474,8 @@ begin
   end
   else
   begin
-    //!!!!!!!!!!!!!!!!!!!!!
     if (Length(CommentStr) > 0) and ContainsStr(CommentStr[1], IdentifierChars) then
-      IdentProc
+      MyIdentProc
     else
     begin
       inc(Run);
@@ -442,9 +518,8 @@ begin
     end
     else
     begin
-      //!!!!!!!!!!!!!!!!!!!!!
       if (Length(CommentStr) > 0) and ContainsStr(CommentStr[1], IdentifierChars) then
-        IdentProc
+        MyIdentProc
       else
       begin
         inc(Run);
@@ -463,17 +538,17 @@ begin
   case FLine[Run] of
     #0:
       begin
-        NullProc;
+        MyNullProc;
         exit;
       end;
     #10:
       begin
-        LFProc;
+        MyLFProc;
         exit;
       end;
     #13:
       begin
-        CRProc;
+        MyCRProc;
         exit;
       end;
   end;
@@ -538,17 +613,17 @@ begin
   case FLine[Run] of
     #0:
       begin
-        NullProc;
+        MyNullProc;
         EXIT;
       end;
     #10:
       begin
-        LFProc;
+        MyLFProc;
         EXIT;
       end;
     #13:
       begin
-        CRProc;
+        MyCRProc;
         EXIT;
       end;
   end;
@@ -597,23 +672,50 @@ begin
   else
     fProcTable[fLine[Run]];
   end;
+  inherited;
 end;
 
-function TSynMyGeneralSyn.GetToken: string;
-var
-  Len: LongInt;
+procedure TSynMyGeneralSyn.MyNullProc;
 begin
-  Len := Run - fTokenPos;
-  SetString(Result, (FLine + fTokenPos), Len);
+  fTokenID := tkNull;
+  inc(Run);
 end;
 
+procedure TSynMyGeneralSyn.MyNumberProc;
+
+  function IsNumberChar: Boolean;
+  begin
+    case fLine[Run] of
+      '0'..'9', '.', 'e', 'E', 'x':
+        Result := True;
+      else
+        Result := False;
+    end;
+  end;
+
+begin
+  inc(Run);
+  fTokenID := tkNumber;
+  while IsNumberChar do
+  begin
+    case FLine[Run] of
+      'x': begin // handle C style hex numbers
+             MyIntegerProc;
+             break;
+           end;
+      '.':
+        if FLine[Run + 1] = '.' then break;
+    end;
+    inc(Run);
+  end;
+end;
 
 function TSynMyGeneralSyn.GetTokenAttribute: TSynHighlighterAttributes;
 begin
   case fTokenID of
     tkComment: Result := CommentAttri;
     tkIdentifier: Result := IdentifierAttri;
-    tkKey1: Result := fKeyAttri1;
+    tkKey: Result := fKeyAttri1;
     tkKey2: Result := fKeyAttri2;
     tkKey3: Result := fKeyAttri3;
     tkKey4: Result := fKeyAttri4;
@@ -629,26 +731,58 @@ begin
   end;
 end;
 
-procedure TSynMyGeneralSyn.IdentProc;
+function TSynMyGeneralSyn.GetTokenID: TtkTokenKind;
 begin
-  while IsIdentChar(fLine[Run]) do
+  result := fTokenID;
+end;
+
+function TSynMyGeneralSyn.GetTokenKind: integer;
+begin
+  result := Ord(GetTokenID);
+end;
+
+procedure TSynMyGeneralSyn.MyIdentProc;
+var
+  sToken : string;
+begin
+  fTokenId := tkIdentifier;
+  while (not GetEol) and IsIdentChar(fLine[Run]) do
     inc(Run);
-  if IsKeyWord(GetToken, fKeyWords1) then
-    fTokenId := tkKey1
-  else
-  if IsKeyWord(GetToken, fKeyWords2) then
-    fTokenId := tkKey2
-  else
-  if IsKeyWord(GetToken, fKeyWords3) then
-    fTokenId := tkKey3
-  else
-  if IsKeyWord(GetToken, fKeyWords4) then
-    fTokenId := tkKey4
-  else
-  if IsKeyWord(GetToken, fKeyWords5) then
-    fTokenId := tkKey5
-  else
-    fTokenId := tkIdentifier;
+  sToken := GetToken;
+  if sToken <> '' then
+  begin
+    if IsKeyWord(sToken, fKeyWords1) then
+      fTokenId := tkKey
+    else
+    if IsKeyWord(sToken, fKeyWords2) then
+      fTokenId := tkKey2
+    else
+    if IsKeyWord(sToken, fKeyWords3) then
+      fTokenId := tkKey3
+    else
+    if IsKeyWord(sToken, fKeyWords4) then
+      fTokenId := tkKey4
+    else
+    if IsKeyWord(sToken, fKeyWords5) then
+      fTokenId := tkKey5;
+  end;
+end;
+
+procedure TSynMyGeneralSyn.MyIntegerProc;
+  function IsIntegerChar: Boolean;
+  begin
+    case fLine[Run] of
+      '0'..'9', 'A'..'F', 'a'..'f':
+        Result := True;
+      else
+        Result := False;
+    end;
+  end;
+
+begin
+  inc(Run);
+  fTokenID := tkNumber;
+  while IsIntegerChar do inc(Run);
 end;
 
 function TSynMyGeneralSyn.IsKeyword(const AKeyword: String; const AKeywordList: TStrings): Boolean;
@@ -747,6 +881,15 @@ begin
   Result := SYNS_LangGeneral;
 end;
 
+procedure TSynMyGeneralSyn.SetComments(Value: TCommentStyles);
+begin
+  if fComments <> Value then
+  begin
+    fComments := Value;
+    DefHighLightChange(Self);
+  end;
+end;
+
 procedure TSynMyGeneralSyn.SetCommentStrings(LineComment, CommentBeg, CommentEnd: string);
 begin
   FLineComment := LineComment;
@@ -758,11 +901,57 @@ begin
   StrToStrings(CommentEnd, COMMENT_LIST_SEPARATOR, FCommentEndList);
 end;
 
+procedure TSynMyGeneralSyn.SetDetectPreprocessor(const Value: boolean);
+begin
+  fDetectPreprocessor := Value;
+end;
+
+procedure TSynMyGeneralSyn.SetIdentifierChars(const Value: UnicodeString);
+begin
+  fIdentChars := Value;
+end;
+
 procedure TSynMyGeneralSyn.GetCommentStrings(var LineComment, CommentBeg, CommentEnd: string);
 begin
   LineComment := StringsToStr(FLineCommentList, COMMENT_LIST_SEPARATOR);
   CommentBeg := StringsToStr(FCommentBegList, COMMENT_LIST_SEPARATOR);
   CommentEnd := StringsToStr(FCommentEndList, COMMENT_LIST_SEPARATOR);
+end;
+
+function TSynMyGeneralSyn.GetDefaultAttribute(Index: integer): TSynHighlighterAttributes;
+begin
+  case Index of
+    SYN_ATTR_COMMENT: Result := fCommentAttri;
+    SYN_ATTR_IDENTIFIER: Result := fIdentifierAttri;
+    SYN_ATTR_KEYWORD: Result := fKeyAttri1;
+    SYN_ATTR_STRING: Result := fStringAttri;
+    SYN_ATTR_WHITESPACE: Result := fSpaceAttri;
+    SYN_ATTR_SYMBOL: Result := fSymbolAttri;
+  else
+    Result := nil;
+  end;
+end;
+
+function TSynMyGeneralSyn.GetEol: Boolean;
+begin
+  Result := Run > fLineLen;
+end;
+
+function TSynMyGeneralSyn.GetIdentifierChars: UnicodeString;
+begin
+  Result := fIdentChars;
+end;
+
+procedure TSynMyGeneralSyn.SetStringDelim(const Value: TStringDelim);
+var
+  newCh: WideChar;
+begin
+  case Value of
+    sdSingleQuote: newCh := '''';
+    else newCh := '"';
+  end; //case
+  if newCh <> fStringDelimCh then
+    fStringDelimCh := newCh;
 end;
 
 procedure TSynMyGeneralSyn.SetStringParams(StrBegChars, StrEndChars: string; MultilineStrings: boolean);
@@ -787,6 +976,14 @@ begin
     if ContainsStr(ch, fNumConstChars) then
       s := s + ch;
   Result := s;
+end;
+
+function TSynMyGeneralSyn.GetStringDelim: TStringDelim;
+begin
+  if fStringDelimCh = '''' then
+    Result := sdSingleQuote
+  else
+    Result := sdDoubleQuote;
 end;
 
 function TSynMyGeneralSyn.GetNumBegChars: string;
