@@ -116,7 +116,7 @@ type
     fSpaceAttri: TSynHighlighterAttributes;
     fStringAttri: TSynHighlighterAttributes;
     fSymbolAttri: TSynHighlighterAttributes;
-    procedure IdentProc;
+    procedure IdentProc; virtual;
     procedure NumberProc;
     procedure CRProc;
     procedure LFProc;
