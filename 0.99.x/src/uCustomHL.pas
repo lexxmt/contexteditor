@@ -205,99 +205,96 @@ var
 begin
   HL := TSynMyGeneralSyn.Create(nil);
 
-  with HL do
+  // general
+  AddAdditionalToHighlighter(HL);
+  HL.LanguageName := CHL^.Language;
+  HL.DefaultFilter := CHL^.Filter;
+  HL.Description := CHL^.Description;
+
+  // colors
+  HL.CommentAttri.Foreground := CHL^.CommentCol.Fg;
+  HL.CommentAttri.Background := CHL^.CommentCol.Bg;
+  HL.IdentifierAttri.Foreground := CHL^.IdentifierCol.Fg;
+  HL.IdentifierAttri.Background := CHL^.IdentifierCol.Bg;
+  HL.KeyAttri1.Foreground := CHL^.Keyword1Col.Fg;
+  HL.KeyAttri1.Background := CHL^.Keyword1Col.Bg;
+  HL.KeyAttri2.Foreground := CHL^.Keyword2Col.Fg;
+  HL.KeyAttri2.Background := CHL^.Keyword2Col.Bg;
+  HL.KeyAttri3.Foreground := CHL^.Keyword3Col.Fg;
+  HL.KeyAttri3.Background := CHL^.Keyword3Col.Bg;
+  HL.KeyAttri4.Foreground := CHL^.Keyword4Col.Fg;
+  HL.KeyAttri4.Background := CHL^.Keyword4Col.Bg;
+  HL.KeyAttri5.Foreground := CHL^.Keyword5Col.Fg;
+  HL.KeyAttri5.Background := CHL^.Keyword5Col.Bg;
+  HL.NumberAttri.Foreground := CHL^.NumberCol.Fg;
+  HL.NumberAttri.Background := CHL^.NumberCol.Bg;
+  HL.PreprocessorAttri.Foreground := CHL^.PreprocessorCol.Fg;
+  HL.PreprocessorAttri.Background := CHL^.PreprocessorCol.Bg;
+  HL.SpaceAttri.Foreground := CHL^.SpaceCol.Fg;
+  HL.SpaceAttri.Background := CHL^.SpaceCol.Bg;
+  HL.StringAttri.Foreground := CHL^.StringCol.Fg;
+  HL.StringAttri.Background := CHL^.StringCol.Bg;
+  HL.SymbolAttri.Foreground := CHL^.SymbolCol.Fg;
+  HL.SymbolAttri.Background := CHL^.SymbolCol.Bg;
+
+  // attributes
+  HL.CommentAttri.Style := CHL^.CommentAttr;
+  HL.IdentifierAttri.Style := CHL^.IdentifierAttr;
+  HL.KeyAttri1.Style := CHL^.Keyword1Attr;
+  HL.KeyAttri2.Style := CHL^.Keyword2Attr;
+  HL.KeyAttri3.Style := CHL^.Keyword3Attr;
+  HL.KeyAttri4.Style := CHL^.Keyword4Attr;
+  HL.KeyAttri5.Style := CHL^.Keyword5Attr;
+  HL.NumberAttri.Style := CHL^.NumberAttr;
+  HL.PreprocessorAttri.Style := CHL^.PreprocessorAttr;
+  HL.StringAttri.Style := CHL^.StringAttr;
+  HL.SymbolAttri.Style := CHL^.SymbolAttr;
+
+  // additional colors
+  SetAttrColor(HL, ATTR_SELECTION_STR, CHL^.SelectionCol.Fg, CHL^.SelectionCol.Bg);
+  SetAttrColor(HL, ATTR_CURRENT_LINE_STR, CHL^.CurrentLineCol.Fg, CHL^.CurrentLineCol.Bg);
+  SetAttrColor(HL, ATTR_MATCHED_BRACES, CHL^.MatchedBracesCol.Fg, CHL^.MatchedBracesCol.Bg);
+
+  //!!    ed.memo.RightEdgeColor:=HL.Attribute[FindAttrIndex(ATTR_RIGHTEDGE_STR,HL)].Foreground;
+
+  while (Pos(' ', CHL^.StringBegChars) > 0) do
+    Delete(CHL^.StringBegChars, Pos(' ', CHL^.StringBegChars), 1);
+  while (Pos(' ', CHL^.StringEndChars) > 0) do
+    Delete(CHL^.StringEndChars, Pos(' ', CHL^.StringEndChars), 1);
+
+  // other
+  HL.IdentifierChars := ExpandIdentCh(CHL^.IdentifierChars);
+  HL.IdentifierBegChars := ExpandIdentCh(CHL^.IdentifierBegChars);
+  HL.NumConstChars := ExpandIdentCh(CHL^.NumConstChars);
+  HL.NumBegChars := ExpandIdentCh(CHL^.NumConstBeg);
+  HL.DetectPreprocessor := CHL^.UsePreprocessor;
+  HL.CaseSensitive := CHL^.CaseSensitive;
+  HL.CurrLineHighlighted := CHL^.CurrLineHighlighted;
+  HL.OverrideTxtFgColor := CHL^.OverrideTxtFgColor;
+  HL.HelpFile := CHL^.HelpFile;
+  HL.SetCommentStrings(CHL^.LineComment, CHL^.CommentBeg, CHL^.CommentEnd);
+  HL.SetStringParams(CHL^.StringBegChars, CHL^.StringEndChars, CHL^.MultilineStrings);
+  HL.EscapeChar := CHL^.EscapeChar;
+  HL.BlockAutoindent := CHL^.BlockAutoindent;
+  HL.BlockBegStr := CHL^.BlockBegStr;
+  HL.BlockEndStr := CHL^.BlockEndStr;
+
+  // keywords
+  if HL.CaseSensitive then
   begin
-    // general
-    AddAdditionalToHighlighter(HL);
-    LanguageName := CHL^.Language;
-    DefaultFilter := CHL^.Filter;
-    Description := CHL^.Description;
-
-    // colors
-    CommentAttri.Foreground := CHL^.CommentCol.Fg;
-    CommentAttri.Background := CHL^.CommentCol.Bg;
-    IdentifierAttri.Foreground := CHL^.IdentifierCol.Fg;
-    IdentifierAttri.Background := CHL^.IdentifierCol.Bg;
-    KeyAttri1.Foreground := CHL^.Keyword1Col.Fg;
-    KeyAttri1.Background := CHL^.Keyword1Col.Bg;
-    KeyAttri2.Foreground := CHL^.Keyword2Col.Fg;
-    KeyAttri2.Background := CHL^.Keyword2Col.Bg;
-    KeyAttri3.Foreground := CHL^.Keyword3Col.Fg;
-    KeyAttri3.Background := CHL^.Keyword3Col.Bg;
-    KeyAttri4.Foreground := CHL^.Keyword4Col.Fg;
-    KeyAttri4.Background := CHL^.Keyword4Col.Bg;
-    KeyAttri5.Foreground := CHL^.Keyword5Col.Fg;
-    KeyAttri5.Background := CHL^.Keyword5Col.Bg;
-    NumberAttri.Foreground := CHL^.NumberCol.Fg;
-    NumberAttri.Background := CHL^.NumberCol.Bg;
-    PreprocessorAttri.Foreground := CHL^.PreprocessorCol.Fg;
-    PreprocessorAttri.Background := CHL^.PreprocessorCol.Bg;
-    SpaceAttri.Foreground := CHL^.SpaceCol.Fg;
-    SpaceAttri.Background := CHL^.SpaceCol.Bg;
-    StringAttri.Foreground := CHL^.StringCol.Fg;
-    StringAttri.Background := CHL^.StringCol.Bg;
-    SymbolAttri.Foreground := CHL^.SymbolCol.Fg;
-    SymbolAttri.Background := CHL^.SymbolCol.Bg;
-
-    // attributes
-    CommentAttri.Style := CHL^.CommentAttr;
-    IdentifierAttri.Style := CHL^.IdentifierAttr;
-    KeyAttri1.Style := CHL^.Keyword1Attr;
-    KeyAttri2.Style := CHL^.Keyword2Attr;
-    KeyAttri3.Style := CHL^.Keyword3Attr;
-    KeyAttri4.Style := CHL^.Keyword4Attr;
-    KeyAttri5.Style := CHL^.Keyword5Attr;
-    NumberAttri.Style := CHL^.NumberAttr;
-    PreprocessorAttri.Style := CHL^.PreprocessorAttr;
-    StringAttri.Style := CHL^.StringAttr;
-    SymbolAttri.Style := CHL^.SymbolAttr;
-
-    // additional colors
-    SetAttrColor(HL, ATTR_SELECTION_STR, CHL^.SelectionCol.Fg, CHL^.SelectionCol.Bg);
-    SetAttrColor(HL, ATTR_CURRENT_LINE_STR, CHL^.CurrentLineCol.Fg, CHL^.CurrentLineCol.Bg);
-    SetAttrColor(HL, ATTR_MATCHED_BRACES, CHL^.MatchedBracesCol.Fg, CHL^.MatchedBracesCol.Bg);
-
-    //!!    ed.memo.RightEdgeColor:=HL.Attribute[FindAttrIndex(ATTR_RIGHTEDGE_STR,HL)].Foreground;
-
-    while (Pos(' ', CHL^.StringBegChars) > 0) do
-      Delete(CHL^.StringBegChars, Pos(' ', CHL^.StringBegChars), 1);
-    while (Pos(' ', CHL^.StringEndChars) > 0) do
-      Delete(CHL^.StringEndChars, Pos(' ', CHL^.StringEndChars), 1);
-
-    // other
-    IdentifierChars := ExpandIdentCh(CHL^.IdentifierChars);
-    IdentifierBegChars := ExpandIdentCh(CHL^.IdentifierBegChars);
-    NumConstChars := ExpandIdentCh(CHL^.NumConstChars);
-    NumBegChars := ExpandIdentCh(CHL^.NumConstBeg);
-    DetectPreprocessor := CHL^.UsePreprocessor;
-    CaseSensitive := CHL^.CaseSensitive;
-    CurrLineHighlighted := CHL^.CurrLineHighlighted;
-    OverrideTxtFgColor := CHL^.OverrideTxtFgColor;
-    HelpFile := CHL^.HelpFile;
-    SetCommentStrings(CHL^.LineComment, CHL^.CommentBeg, CHL^.CommentEnd);
-    SetStringParams(CHL^.StringBegChars, CHL^.StringEndChars, CHL^.MultilineStrings);
-    EscapeChar := CHL^.EscapeChar;
-    BlockAutoindent := CHL^.BlockAutoindent;
-    BlockBegStr := CHL^.BlockBegStr;
-    BlockEndStr := CHL^.BlockEndStr;
-
-    // keywords
-    if CaseSensitive then
-    begin
-      HL.Keywords1.Text := CHL^.Keywords1;
-      HL.Keywords2.Text := CHL^.Keywords2;
-      HL.Keywords3.Text := CHL^.Keywords3;
-      HL.Keywords4.Text := CHL^.Keywords4;
-      HL.Keywords5.Text := CHL^.Keywords5;
-    end
-    else
-    begin
-      HL.Keywords1.Text := UpperCase(CHL^.Keywords1);
-      HL.Keywords2.Text := UpperCase(CHL^.Keywords2);
-      HL.Keywords3.Text := UpperCase(CHL^.Keywords3);
-      HL.Keywords4.Text := UpperCase(CHL^.Keywords4);
-      HL.Keywords5.Text := UpperCase(CHL^.Keywords5);
-    end;
+    HL.Keywords1.Text := CHL^.Keywords1;
+    HL.Keywords2.Text := CHL^.Keywords2;
+    HL.Keywords3.Text := CHL^.Keywords3;
+    HL.Keywords4.Text := CHL^.Keywords4;
+    HL.Keywords5.Text := CHL^.Keywords5;
+  end
+  else
+  begin
+    HL.Keywords1.Text := UpperCase(CHL^.Keywords1);
+    HL.Keywords2.Text := UpperCase(CHL^.Keywords2);
+    HL.Keywords3.Text := UpperCase(CHL^.Keywords3);
+    HL.Keywords4.Text := UpperCase(CHL^.Keywords4);
+    HL.Keywords5.Text := UpperCase(CHL^.Keywords5);
   end;
 
   HL.SourceFileName := SrcFileName;
