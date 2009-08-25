@@ -50,7 +50,6 @@ uses
   fBottomWindowPage in 'fBottomWindowPage.pas' {fmBottomWindowPage},
   fBottomWindowContainer in 'fBottomWindowContainer.pas' {fmBottomWindowContainer},
   uSynAttribs in 'uSynAttribs.pas',
-  uHighlighter in 'uHighlighter.pas',
   uEnvOptions in 'uEnvOptions.pas',
   uEditorPlugins in 'uEditorPlugins.pas',
   fIncrementalSearch in 'fIncrementalSearch.pas' {fmIncrementalSearch},
