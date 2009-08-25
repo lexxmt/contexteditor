@@ -69,9 +69,11 @@ uses
   Classes;
 
 type
-  TtkTokenKind = (tkComment, tkIdentifier, tkKey, tkNull, tkNumber, tkPreprocessor, tkSpace, tkString, tkSymbol, tkUnknown);
+  TtkTokenKind = (tkComment, tkIdentifier, tkKey, tkNull, tkNumber,
+    tkPreprocessor, tkSpace, tkString, tkSymbol, tkUnknown);
 
-  TCommentStyle = (csAnsiStyle, csPasStyle, csCStyle, csAsmStyle, csBasStyle, csCPPStyle);
+  TCommentStyle = (csAnsiStyle, csPasStyle, csCStyle, csAsmStyle, csBasStyle,
+    csCPPStyle);
   TCommentStyles = set of TCommentStyle;
 
   TRangeState = (rsANil, rsAnsi, rsPasStyle, rsCStyle, rsUnKnown);
@@ -81,11 +83,17 @@ type
 type
   TSynGeneralSyn = class(TSynCustomHighlighter)
   private
+    fIdentChars: UnicodeString;
     fRange: TRangeState;
     fTokenID: TtkTokenKind;
+    fCommentAttri: TSynHighlighterAttributes;
+    fIdentifierAttri: TSynHighlighterAttributes;
     fKeyAttri: TSynHighlighterAttributes;
     fNumberAttri: TSynHighlighterAttributes;
-    fPreprocessorAttri: TSynHighlighterAttributes;
+    fPreprocessorAttri: TSynHighlighterAttributes;                         
+    fSpaceAttri: TSynHighlighterAttributes;
+    fStringAttri: TSynHighlighterAttributes;
+    fSymbolAttri: TSynHighlighterAttributes;
     fKeyWords: TUnicodeStrings;
     fComments: TCommentStyles;
     fStringDelimCh: WideChar;
@@ -93,7 +101,12 @@ type
     procedure AsciiCharProc;
     procedure BraceOpenProc;
     procedure PointCommaProc;
+    procedure CRProc;
+    procedure IdentProc;
     procedure IntegerProc;
+    procedure LFProc;
+    procedure NullProc;
+    procedure NumberProc;
     procedure RoundOpenProc;
     procedure SlashProc;
     procedure SpaceProc;
@@ -109,24 +122,14 @@ type
     function GetIdentifierChars: UnicodeString;
     procedure SetIdentifierChars(const Value: UnicodeString);
     procedure SetDetectPreprocessor(Value: boolean);
-  protected
-    fCommentAttri: TSynHighlighterAttributes;
-    fIdentifierAttri: TSynHighlighterAttributes;
-    fIdentChars: UnicodeString;
-    fSpaceAttri: TSynHighlighterAttributes;
-    fStringAttri: TSynHighlighterAttributes;
-    fSymbolAttri: TSynHighlighterAttributes;
-    procedure IdentProc; virtual;
-    procedure NumberProc;
-    procedure CRProc;
-    procedure LFProc;
-    procedure NullProc;
   public
     class function GetLanguageName: string; override;
     class function GetFriendlyLanguageName: UnicodeString; override;
+  public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    function GetDefaultAttribute(Index: integer): TSynHighlighterAttributes; override;
+    function GetDefaultAttribute(Index: integer): TSynHighlighterAttributes;
+      override;
     function GetEol: Boolean; override;
     function GetRange: Pointer; override;
     function GetTokenID: TtkTokenKind;
@@ -143,19 +146,29 @@ type
     function LoadFromRegistry(RootKey: HKEY; Key: string): boolean; override;
     {$ENDIF}
   published
-    property CommentAttri: TSynHighlighterAttributes read fCommentAttri write fCommentAttri;
+    property CommentAttri: TSynHighlighterAttributes read fCommentAttri
+      write fCommentAttri;
     property Comments: TCommentStyles read fComments write SetComments;
-    property DetectPreprocessor: boolean read fDetectPreprocessor write SetDetectPreprocessor;
-    property IdentifierAttri: TSynHighlighterAttributes read fIdentifierAttri write fIdentifierAttri;
-    property IdentifierChars: UnicodeString read GetIdentifierChars write SetIdentifierChars;
+    property DetectPreprocessor: boolean read fDetectPreprocessor
+      write SetDetectPreprocessor;
+    property IdentifierAttri: TSynHighlighterAttributes read fIdentifierAttri
+      write fIdentifierAttri;
+    property IdentifierChars: UnicodeString read GetIdentifierChars
+      write SetIdentifierChars;
     property KeyAttri: TSynHighlighterAttributes read fKeyAttri write fKeyAttri;
     property KeyWords: TUnicodeStrings read fKeyWords write SetKeyWords;
-    property NumberAttri: TSynHighlighterAttributes read fNumberAttri write fNumberAttri;
-    property PreprocessorAttri: TSynHighlighterAttributes read fPreprocessorAttri write fPreprocessorAttri;
-    property SpaceAttri: TSynHighlighterAttributes read fSpaceAttri write fSpaceAttri;
-    property StringAttri: TSynHighlighterAttributes read fStringAttri write fStringAttri;
-    property SymbolAttri: TSynHighlighterAttributes read fSymbolAttri write fSymbolAttri;
-    property StringDelim: TStringDelim read GetStringDelim write SetStringDelim default sdSingleQuote;
+    property NumberAttri: TSynHighlighterAttributes read fNumberAttri
+      write fNumberAttri;
+    property PreprocessorAttri: TSynHighlighterAttributes
+      read fPreprocessorAttri write fPreprocessorAttri;
+    property SpaceAttri: TSynHighlighterAttributes read fSpaceAttri
+      write fSpaceAttri;
+    property StringAttri: TSynHighlighterAttributes read fStringAttri
+      write fStringAttri;
+    property SymbolAttri: TSynHighlighterAttributes read fSymbolAttri
+      write fSymbolAttri;
+    property StringDelim: TStringDelim read GetStringDelim write SetStringDelim
+      default sdSingleQuote;
   end;
 
 implementation
@@ -216,37 +229,29 @@ begin
   fKeyWords := TUnicodeStringList.Create;
   TUnicodeStringList(fKeyWords).Sorted := True;
   TUnicodeStringList(fKeyWords).Duplicates := dupIgnore;
-
   fCommentAttri := TSynHighlighterAttributes.Create(SYNS_AttrComment, SYNS_FriendlyAttrComment);
   fCommentAttri.Style := [fsItalic];
   AddAttribute(fCommentAttri);
-
   fIdentifierAttri := TSynHighlighterAttributes.Create(SYNS_AttrIdentifier, SYNS_FriendlyAttrIdentifier);
   AddAttribute(fIdentifierAttri);
-
   fKeyAttri := TSynHighlighterAttributes.Create(SYNS_AttrReservedWord, SYNS_FriendlyAttrReservedWord);
   fKeyAttri.Style := [fsBold];
   AddAttribute(fKeyAttri);
-
   fNumberAttri := TSynHighlighterAttributes.Create(SYNS_AttrNumber, SYNS_FriendlyAttrNumber);
   AddAttribute(fNumberAttri);
-
   fSpaceAttri := TSynHighlighterAttributes.Create(SYNS_AttrSpace, SYNS_FriendlyAttrSpace);
   AddAttribute(fSpaceAttri);
-
   fStringAttri := TSynHighlighterAttributes.Create(SYNS_AttrString, SYNS_FriendlyAttrString);
   AddAttribute(fStringAttri);
-
   fSymbolAttri := TSynHighlighterAttributes.Create(SYNS_AttrSymbol, SYNS_FriendlyAttrSymbol);
   AddAttribute(fSymbolAttri);
-
   fPreprocessorAttri := TSynHighlighterAttributes.Create(SYNS_AttrPreprocessor, SYNS_FriendlyAttrPreprocessor);
   AddAttribute(fPreprocessorAttri);
-
   SetAttributesOnChange(DefHighlightChange);
 
   fStringDelimCh := '''';
-  fIdentChars := '_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' + 'abcdefghijklmnopqrstuvwxyz';
+  fIdentChars := '_0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
+    'abcdefghijklmnopqrstuvwxyz';
   fRange := rsUnknown;
 end; { Create }
 
