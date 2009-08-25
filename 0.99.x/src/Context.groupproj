@@ -9,7 +9,10 @@
 			<Projects Include="..\lib\CommonLib.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\lib\Source\SynEdit\Packages\SynEdit_R2009.dproj">
+			<Projects Include="..\lib\Source\UniSynEdit\Packages\SynEdit_D2009.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\lib\Source\UniSynEdit\Packages\SynEdit_R2009.dproj">
 				<Dependencies/>
 			</Projects>
 		</ItemGroup>
@@ -38,23 +41,32 @@
 		<Target Name="CommonLib:Make">
 			<MSBuild Targets="Make" Projects="..\lib\CommonLib.dproj"/>
 		</Target>
+		<Target Name="SynEdit_D2009">
+			<MSBuild Projects="..\lib\Source\UniSynEdit\Packages\SynEdit_D2009.dproj"/>
+		</Target>
+		<Target Name="SynEdit_D2009:Clean">
+			<MSBuild Targets="Clean" Projects="..\lib\Source\UniSynEdit\Packages\SynEdit_D2009.dproj"/>
+		</Target>
+		<Target Name="SynEdit_D2009:Make">
+			<MSBuild Targets="Make" Projects="..\lib\Source\UniSynEdit\Packages\SynEdit_D2009.dproj"/>
+		</Target>
 		<Target Name="SynEdit_R2009">
-			<MSBuild Projects="..\lib\Source\SynEdit\Packages\SynEdit_R2009.dproj"/>
+			<MSBuild Projects="..\lib\Source\UniSynEdit\Packages\SynEdit_R2009.dproj"/>
 		</Target>
 		<Target Name="SynEdit_R2009:Clean">
-			<MSBuild Targets="Clean" Projects="..\lib\Source\SynEdit\Packages\SynEdit_R2009.dproj"/>
+			<MSBuild Targets="Clean" Projects="..\lib\Source\UniSynEdit\Packages\SynEdit_R2009.dproj"/>
 		</Target>
 		<Target Name="SynEdit_R2009:Make">
-			<MSBuild Targets="Make" Projects="..\lib\Source\SynEdit\Packages\SynEdit_R2009.dproj"/>
+			<MSBuild Targets="Make" Projects="..\lib\Source\UniSynEdit\Packages\SynEdit_R2009.dproj"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="ConTEXT;CommonLib;SynEdit_R2009"/>
+			<CallTarget Targets="ConTEXT;CommonLib;SynEdit_D2009;SynEdit_R2009"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="ConTEXT:Clean;CommonLib:Clean;SynEdit_R2009:Clean"/>
+			<CallTarget Targets="ConTEXT:Clean;CommonLib:Clean;SynEdit_D2009:Clean;SynEdit_R2009:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="ConTEXT:Make;CommonLib:Make;SynEdit_R2009:Make"/>
+			<CallTarget Targets="ConTEXT:Make;CommonLib:Make;SynEdit_D2009:Make;SynEdit_R2009:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>
