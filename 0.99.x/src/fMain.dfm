@@ -88,6 +88,7 @@ object fmMain: TfmMain
       Left = 0
       Top = 0
       CloseButton = False
+      DockPos = 0
       FloatingMode = fmOnTopOfAllForms
       FullSize = True
       Images = ilToolbar
