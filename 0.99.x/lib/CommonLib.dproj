@@ -25,7 +25,7 @@
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_StringChecks>off</DCC_StringChecks>
 			<DCC_DcuOutput>Binaries\</DCC_DcuOutput>
-			<DCC_UnitSearchPath>Source\SynEdit;Source\SpTBX;Source\tb2k;Source\jedi;Source\jedi\windows;..\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>Source\UniSynEdit\Source;Source\SpTBX;Source\tb2k;Source\jedi;Source\jedi\windows;..\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DesignOnlyPackage>false</DesignOnlyPackage>
 			<DCC_WriteableConstants>true</DCC_WriteableConstants>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
@@ -83,7 +83,6 @@
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="Source\DirLabel.dcr"/>
-			<DCCReference Include="Source\SynEdit\SynEditReg.dcr"/>
 			<DCCReference Include="Source\MainInstance.dcr"/>
 			<DCCReference Include="Source\HistoryList.dcr"/>
 			<DCCReference Include="Source\FontCtls.dcr"/>
@@ -93,6 +92,7 @@
 			<DCCReference Include="Source\SpTBX\SpTBXReg.dcr"/>
 			<DCCReference Include="Source\RsRuler.dcr"/>
 			<DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.dcr"/>
+			<DCCReference Include="Source\UniSynEdit\Source\SynEditReg.dcr"/>
 			<DCCReference Include="vcl.dcp"/>
 			<DCCReference Include="vclx.dcp"/>
 			<DCCReference Include="vcldb.dcp"/>
@@ -122,7 +122,6 @@
 			<DCCReference Include="Source\CustomSynEdit\ConTEXTSynEdit.pas"/>
 			<DCCReference Include="Source\CustomSynEdit\SynHighlighterText.pas"/>
 			<DCCReference Include="Source\DirLabel.dcr"/>
-			<DCCReference Include="Source\SynEdit\SynEditReg.dcr"/>
 			<DCCReference Include="Source\MainInstance.dcr"/>
 			<DCCReference Include="Source\HistoryList.dcr"/>
 			<DCCReference Include="Source\FontCtls.dcr"/>
@@ -132,6 +131,7 @@
 			<DCCReference Include="Source\SpTBX\SpTBXReg.dcr"/>
 			<DCCReference Include="Source\RsRuler.dcr"/>
 			<DCCReference Include="Source\VirtualTree\VirtualShellToolsReg.dcr"/>
+			<DCCReference Include="Source\UniSynEdit\Source\SynEditReg.dcr"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -154,6 +154,7 @@
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+						<Parameters Name="HostApplication">I:\ConTEXT\ConTEXT.exe</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>

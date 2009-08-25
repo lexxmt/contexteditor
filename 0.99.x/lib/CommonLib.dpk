@@ -2,7 +2,6 @@ package CommonLib;
 
 {$R *.res}
 {$R 'Source\DirLabel.dcr'}
-{$R 'Source\SynEdit\SynEditReg.dcr'}
 {$R 'Source\MainInstance.dcr'}
 {$R 'Source\HistoryList.dcr'}
 {$R 'Source\FontCtls.dcr'}
@@ -12,6 +11,7 @@ package CommonLib;
 {$R 'Source\SpTBX\SpTBXReg.dcr'}
 {$R 'Source\RsRuler.dcr'}
 {$R 'Source\VirtualTree\VirtualShellToolsReg.dcr'}
+{$R 'Source\UniSynEdit\Source\SynEditReg.dcr'}
 {$ALIGN 8}
 {$ASSERTIONS OFF}
 {$BOOLEVAL OFF}
