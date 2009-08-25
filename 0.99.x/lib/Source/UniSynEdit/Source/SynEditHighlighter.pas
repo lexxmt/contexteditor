@@ -66,7 +66,7 @@ type
     fBackgroundDefault: TColor;
     fForeground: TColor;
     fForegroundDefault: TColor;
-    fFriendlyName: String;
+    fFriendlyName: UnicodeString;
     fName: string;
     fStyle: TFontStyles;
     fStyleDefault: TFontStyles;
@@ -83,7 +83,7 @@ type
   public
     procedure Assign(Source: TPersistent); override;
     procedure AssignColorAndStyle(Source: TSynHighlighterAttributes);
-    constructor Create(AName: string; AFriendlyName: String);
+    constructor Create(AName: string; AFriendlyName: UnicodeString);
     procedure InternalSaveDefaultValues;
 {$IFNDEF SYN_CLX}
     function LoadFromBorlandRegistry(RootKey: HKEY; AttrKey, AttrName: string;
@@ -94,7 +94,7 @@ type
     function SaveToFile(Ini: TIniFile): Boolean;
 {$ENDIF}
   public
-    property FriendlyName: String read fFriendlyName;
+    property FriendlyName: UnicodeString read fFriendlyName;
     property IntegerStyle: Integer read GetStyleFromInt write SetStyleFromInt;
     property Name: string read fName;
     property OnChange: TNotifyEvent read fOnChange write fOnChange;
@@ -132,16 +132,16 @@ type
     procedure SetEnabled(const Value: Boolean);
   protected
     fCasedLine: PWideChar;
-    fCasedLineStr: String;
+    fCasedLineStr: UnicodeString;
     fCaseSensitive: Boolean;
     fDefaultFilter: string;
     fExpandedLine: PWideChar;
     fExpandedLineLen: Integer;
-    fExpandedLineStr: String;
+    fExpandedLineStr: UnicodeString;
     fExpandedTokenPos: Integer;
     fLine: PWideChar;
     fLineLen: Integer;
-    fLineStr: String;
+    fLineStr: UnicodeString;
     fLineNumber: Integer;  
     fStringLen: Integer;   
     fToIdent: PWideChar;   
@@ -160,21 +160,21 @@ type
     function GetDefaultAttribute(Index: Integer): TSynHighlighterAttributes;
       virtual; abstract;
     function GetDefaultFilter: string; virtual;
-    function GetSampleSource: String; virtual;
-    procedure DoSetLine(const Value: String; LineNumber: Integer); virtual;
-    function IsCurrentToken(const Token: String): Boolean; virtual;
+    function GetSampleSource: UnicodeString; virtual;
+    procedure DoSetLine(const Value: UnicodeString; LineNumber: Integer); virtual;
+    function IsCurrentToken(const Token: UnicodeString): Boolean; virtual;
     function IsFilterStored: Boolean; virtual;
     function IsLineEnd(Run: Integer): Boolean; virtual;
     procedure SetAttributesOnChange(AEvent: TNotifyEvent);
     procedure SetDefaultFilter(Value: string); virtual;
-    procedure SetSampleSource(Value: String); virtual;
+    procedure SetSampleSource(Value: UnicodeString); virtual;
   protected
     function GetCapabilitiesProp: TSynHighlighterCapabilities;
-    function GetFriendlyLanguageNameProp: String;
+    function GetFriendlyLanguageNameProp: UnicodeString;
     function GetLanguageNameProp: string;
   public
     class function GetCapabilities: TSynHighlighterCapabilities; virtual;
-    class function GetFriendlyLanguageName: String; virtual;
+    class function GetFriendlyLanguageName: UnicodeString; virtual;
     class function GetLanguageName: string; virtual;
   public
     constructor Create(AOwner: TComponent); override;
@@ -183,21 +183,21 @@ type
     procedure BeginUpdate;
     procedure EndUpdate;
     function GetEol: Boolean; virtual; abstract;
-    function GetExpandedToken: String; virtual;
+    function GetExpandedToken: UnicodeString; virtual;
     function GetExpandedTokenPos: Integer; virtual;
-    function GetKeyWords(TokenKind: Integer): String; virtual;
+    function GetKeyWords(TokenKind: Integer): UnicodeString; virtual;
     function GetRange: Pointer; virtual;
-    function GetToken: String; virtual;
+    function GetToken: UnicodeString; virtual;
     function GetTokenAttribute: TSynHighlighterAttributes; virtual; abstract;
     function GetTokenKind: Integer; virtual; abstract;
     function GetTokenPos: Integer; virtual;
-    function IsKeyword(const AKeyword: String): Boolean; virtual;
+    function IsKeyword(const AKeyword: UnicodeString): Boolean; virtual;
     procedure Next; virtual;
     procedure NextToEol;
     function PosToExpandedPos(Pos: Integer): Integer;
-    procedure SetLineExpandedAtWideGlyphs(const Line, ExpandedLine: String;
+    procedure SetLineExpandedAtWideGlyphs(const Line, ExpandedLine: UnicodeString;
       LineNumber: Integer); virtual;
-    procedure SetLine(const Value: String; LineNumber: Integer); virtual;
+    procedure SetLine(const Value: UnicodeString; LineNumber: Integer); virtual;
     procedure SetRange(Value: Pointer); virtual;
     procedure ResetRange; virtual;
     function UseUserSettings(settingIndex: Integer): Boolean; virtual;
@@ -213,14 +213,14 @@ type
     function IsIdentChar(AChar: WideChar): Boolean; virtual;
     function IsWhiteChar(AChar: WideChar): Boolean; virtual;
     function IsWordBreakChar(AChar: WideChar): Boolean; virtual;
-    property FriendlyLanguageName: String read GetFriendlyLanguageNameProp;
+    property FriendlyLanguageName: UnicodeString read GetFriendlyLanguageNameProp;
     property LanguageName: string read GetLanguageNameProp;
   public
     property AttrCount: Integer read GetAttribCount;
     property Attribute[Index: Integer]: TSynHighlighterAttributes
       read GetAttribute;
     property Capabilities: TSynHighlighterCapabilities read GetCapabilitiesProp;
-    property SampleSource: String read GetSampleSource write SetSampleSource;
+    property SampleSource: UnicodeString read GetSampleSource write SetSampleSource;
     property CommentAttribute: TSynHighlighterAttributes
       index SYN_ATTR_COMMENT read GetDefaultAttribute;
     property IdentifierAttribute: TSynHighlighterAttributes
@@ -403,7 +403,7 @@ begin
     fOnChange(Self);
 end;
 
-constructor TSynHighlighterAttributes.Create(AName: string; AFriendlyName: String);
+constructor TSynHighlighterAttributes.Create(AName: string; AFriendlyName: UnicodeString);
 begin
   inherited Create;
   Background := clNone;
@@ -978,7 +978,7 @@ begin
     Result := fExpandedTokenPos;
 end;
 
-function TSynCustomHighlighter.GetExpandedToken: String;
+function TSynCustomHighlighter.GetExpandedToken: UnicodeString;
 var
   Len: Integer;
 begin
@@ -994,7 +994,7 @@ begin
     WStrLCopy(@Result[1], fExpandedLine + fExpandedTokenPos, Len);
 end;
 
-class function TSynCustomHighlighter.GetFriendlyLanguageName: String;
+class function TSynCustomHighlighter.GetFriendlyLanguageName: UnicodeString;
 begin
 {$IFDEF SYN_DEVELOPMENT_CHECKS}
   raise Exception.CreateFmt('%s.GetFriendlyLanguageName not implemented', [ClassName]);
@@ -1010,7 +1010,7 @@ begin
   Result := SYNS_LangUnknown;
 end;
 
-function TSynCustomHighlighter.GetFriendlyLanguageNameProp: String;
+function TSynCustomHighlighter.GetFriendlyLanguageNameProp: UnicodeString;
 begin
   Result := GetFriendlyLanguageName;
 end;
@@ -1025,7 +1025,7 @@ begin
   Result := nil;
 end;
 
-function TSynCustomHighlighter.GetToken: String;
+function TSynCustomHighlighter.GetToken: UnicodeString;
 var
   Len: Integer;
 begin
@@ -1040,12 +1040,12 @@ begin
   Result := fTokenPos;
 end;
 
-function TSynCustomHighlighter.GetKeyWords(TokenKind: Integer): String;
+function TSynCustomHighlighter.GetKeyWords(TokenKind: Integer): UnicodeString;
 begin
   Result := '';
 end;
 
-function TSynCustomHighlighter.GetSampleSource: String;
+function TSynCustomHighlighter.GetSampleSource: UnicodeString;
 begin
   Result := '';
 end;
@@ -1055,7 +1055,7 @@ begin
   fAttrChangeHooks.Add(ANotifyEvent);
 end;
 
-function TSynCustomHighlighter.IsCurrentToken(const Token: String): Boolean;
+function TSynCustomHighlighter.IsCurrentToken(const Token: UnicodeString): Boolean;
 var
   I: Integer;
   Temp: PWideChar;
@@ -1093,7 +1093,7 @@ begin
   end;
 end;
 
-function TSynCustomHighlighter.IsKeyword(const AKeyword: String): Boolean;
+function TSynCustomHighlighter.IsKeyword(const AKeyword: UnicodeString): Boolean;
 begin
   Result := False;
 end;
@@ -1171,7 +1171,7 @@ begin
 end;
 
 procedure TSynCustomHighlighter.SetLineExpandedAtWideGlyphs(const Line,
-  ExpandedLine: String; LineNumber: Integer);
+  ExpandedLine: UnicodeString; LineNumber: Integer);
 begin
   fExpandedLineStr := ExpandedLine;
   fExpandedLine := PWideChar(fExpandedLineStr);
@@ -1180,7 +1180,7 @@ begin
   Next;
 end;
 
-procedure TSynCustomHighlighter.SetLine(const Value: String; LineNumber: Integer);
+procedure TSynCustomHighlighter.SetLine(const Value: UnicodeString; LineNumber: Integer);
 begin
   fExpandedLineStr := '';
   fExpandedLine := nil;
@@ -1189,9 +1189,9 @@ begin
   Next;
 end;
 
-procedure TSynCustomHighlighter.DoSetLine(const Value: String; LineNumber: Integer);
+procedure TSynCustomHighlighter.DoSetLine(const Value: UnicodeString; LineNumber: Integer);
 begin
-  // Strings are not reference counted, hence we need to copy
+  // UnicodeStrings are not reference counted, hence we need to copy
   if fCaseSensitive then
   begin
     fLineStr := Value;
@@ -1224,7 +1224,7 @@ begin
   fDefaultFilter := Value;
 end;
 
-procedure TSynCustomHighlighter.SetSampleSource(Value: String);
+procedure TSynCustomHighlighter.SetSampleSource(Value: UnicodeString);
 begin
   // TODO: sure this should be empty?
 end;
@@ -1249,7 +1249,7 @@ begin
   DefHighlightChange(nil);
 end;
 
-// Pos and Result are 1-based (i.e. positions in a String not a PWideChar)
+// Pos and Result are 1-based (i.e. positions in a UnicodeString not a PWideChar)
 function TSynCustomHighlighter.PosToExpandedPos(Pos: Integer): Integer;
 var
   i: Integer;

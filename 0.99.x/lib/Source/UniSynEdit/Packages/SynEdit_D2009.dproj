@@ -26,7 +26,7 @@
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_Description>SynEdit component suite</DCC_Description>
-			<DCC_DependencyCheckOutputName>C:\Documents and Settings\All Users\Documents\RAD Studio\6.0\Bpl\SynEdit_D2009.bpl</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\6.0\Bpl\SynEdit_D2009.bpl</DCC_DependencyCheckOutputName>
 			<DCC_N>false</DCC_N>
 			<DCC_S>false</DCC_S>
 			<GenDll>true</GenDll>
@@ -48,19 +48,27 @@
 			<DelphiCompile Include="SynEdit_D2009.dpk">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="..\SynEditReg.dcr"/>
+			<DCCReference Include="..\Source\SynEditReg.dcr"/>
 			<DCCReference Include="designide.dcp"/>
 			<DCCReference Include="SynEdit_R2009.dcp"/>
-			<DCCReference Include="..\SynEditReg.pas"/>
-			<DCCReference Include="..\SynEditPropertyReg.pas"/>
-			<DCCReference Include="..\SynHighlighterManager.pas"/>
+			<DCCReference Include="..\Source\SynEditReg.pas"/>
+			<DCCReference Include="..\Source\SynEditPropertyReg.pas"/>
+			<DCCReference Include="..\SourceSynHighlighterManager.pas">
+				<ModuleName>SynHighlighterManager</ModuleName>
+			</DCCReference>
+			<DCCReference Include="..\Source\SynEditReg.dcr"/>
+			<DCCReference Include="..\SourceSynEditReg.dcr"/>
+			<DCCReference Include="..\SourcSynEditReg.dcr"/>
+			<DCCReference Include="..\SourSynEditReg.dcr"/>
+			<DCCReference Include="..\SouSynEditReg.dcr"/>
+			<DCCReference Include="..\SoSynEditReg.dcr"/>
+			<DCCReference Include="..\SSynEditReg.dcr"/>
 			<DCCReference Include="..\SynEditReg.dcr"/>
 			<DCCReference Include="..\e\SynEditReg.dcr"/>
 			<DCCReference Include="..\ce\SynEditReg.dcr"/>
 			<DCCReference Include="..\rce\SynEditReg.dcr"/>
 			<DCCReference Include="..\urce\SynEditReg.dcr"/>
 			<DCCReference Include="..\ource\SynEditReg.dcr"/>
-			<DCCReference Include="..\Source\SynEditReg.dcr"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
